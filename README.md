@@ -62,7 +62,7 @@ The following sections describe the built-in blocks and their customizing option
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
 | `BLOX_CONF__BLOCK_PREFIX` | `'['` | Block's prefix |
-| `BLOX_CONF__BLOCK_SUFFIX` | `']'` | Block's prefix |
+| `BLOX_CONF__BLOCK_SUFFIX` | `']'` | Block's suffix |
 | `BLOX_CONF__ONELINE` | `false` | **When setting to `true`, the lower segments will be disabled** |
 
 ### Core blocks
