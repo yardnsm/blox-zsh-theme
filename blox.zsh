@@ -135,7 +135,7 @@ blox_block__git_helper__dirty() {
 }
 
 # Check remote status (pull/push)
-function git_remote_status() {
+function blox_block__git_helper__status() {
 
   local git_local=$(command git rev-parse @ 2> /dev/null)
   local git_remote=$(command git rev-parse @{u} 2> /dev/null)
@@ -165,7 +165,7 @@ function blox_block__git() {
   if git rev-parse --git-dir > /dev/null 2>&1; then
 
     local branch="%F{242}$(blox_block__git_helper__branch)%{$reset_color%}"
-    local remote="$(git_remote_status)"
+    local remote="$(blox_block__git_helper__status)"
     local commit="%{$fg[magenta]%}[$(blox_block__git_helper__commit)]%{$reset_color%}"
     local dirtyclean="$(blox_block__git_helper__dirty)"
 
@@ -402,16 +402,12 @@ ${lower_left} '
 
 # Async stuff (for git fetch)
 ASYNC_PROC=0
-local tmp_prompt_location="${HOME}/.zsh_tmp_prompt"
 function blox_hook__async() {
 
   function async {
 
     # Fetch the data from git
     git fetch &> /dev/null
-
-    # Save the prompt in a temp file so the parent shell can read it
-    printf "%s" $PROMPT > "$tmp_prompt_location"
 
     # Signal the parent shell to update the prompt
     kill -s USR2 $$
@@ -432,11 +428,14 @@ function blox_hook__async() {
 # 'Catch' the async process
 function TRAPUSR2 {
 
+  # Re-build the prompt
+  blox_hook__build_prompt
+
   # Reset process number
   ASYNC_PROC=0
 
   # Reload the prompt
-  zle && zle reset-prompt
+  zle && zle reset-prompt && printf '\n'
 }
 
 # --------------------------------------------- #

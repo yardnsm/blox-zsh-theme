@@ -152,16 +152,12 @@ ${lower_left} '
 
 # Async stuff (for git fetch)
 ASYNC_PROC=0
-local tmp_prompt_location="${HOME}/.zsh_tmp_prompt"
 function blox_hook__async() {
 
   function async {
 
     # Fetch the data from git
     git fetch &> /dev/null
-
-    # Save the prompt in a temp file so the parent shell can read it
-    printf "%s" $PROMPT > "$tmp_prompt_location" &> /dev/null
 
     # Signal the parent shell to update the prompt
     kill -s USR2 $$
@@ -182,11 +178,14 @@ function blox_hook__async() {
 # 'Catch' the async process
 function TRAPUSR2 {
 
+  # Re-build the prompt
+  blox_hook__build_prompt
+
   # Reset process number
   ASYNC_PROC=0
 
   # Reload the prompt
-  zle && zle reset-prompt
+  zle && zle reset-prompt && printf '\n'
 }
 
 # --------------------------------------------- #
