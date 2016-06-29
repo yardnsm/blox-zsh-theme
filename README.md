@@ -7,7 +7,7 @@
 
 Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks: each block is shown inside a pair of [square brackets].
 
-It's highly customizable - you can add blocks by simply provide a string to a function.
+It's highly customizable - you can add blocks by simply creating a function.
 
 ---
 
