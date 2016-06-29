@@ -57,7 +57,7 @@ blox_block__git_helper__dirty() {
 }
 
 # Check remote status (pull/push)
-function git_remote_status() {
+function blox_block__git_helper__status() {
 
   local git_local=$(command git rev-parse @ 2> /dev/null)
   local git_remote=$(command git rev-parse @{u} 2> /dev/null)
@@ -87,7 +87,7 @@ function blox_block__git() {
   if git rev-parse --git-dir > /dev/null 2>&1; then
 
     local branch="%F{242}$(blox_block__git_helper__branch)%{$reset_color%}"
-    local remote="$(git_remote_status)"
+    local remote="$(blox_block__git_helper__status)"
     local commit="%{$fg[magenta]%}[$(blox_block__git_helper__commit)]%{$reset_color%}"
     local dirtyclean="$(blox_block__git_helper__dirty)"
 

@@ -161,7 +161,7 @@ function blox_hook__async() {
     git fetch &> /dev/null
 
     # Save the prompt in a temp file so the parent shell can read it
-    printf "%s" $PROMPT > "$tmp_prompt_location"
+    printf "%s" $PROMPT > "$tmp_prompt_location" &> /dev/null
 
     # Signal the parent shell to update the prompt
     kill -s USR2 $$

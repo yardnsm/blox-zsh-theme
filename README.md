@@ -114,7 +114,7 @@ Shows host info (user@machine).
 | `BLOX_BLOCK__HOST_USER_SHOW_ALWAYS` | `false` | If false, the username will be shown only if `$LOGNAME` is different from the current logged user. |
 | `BLOX_BLOCK__HOST_USER_COLOR` | `'yellow'` | User info color |
 | `BLOX_BLOCK__HOST_USER_ROOT_COLOR` | `'red'` | The color to show when the logged user is root. |
-| `BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS` | `'false'` | If false, the working machine name is shown only in SSH session. |
+| `BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS` | `false` | If false, the working machine name is shown only in SSH session. |
 | `BLOX_BLOCK__HOST_MACHINE_COLOR` | `'cyan'` | The machine name color |
 
 #### `blox_block__bgjobs`
