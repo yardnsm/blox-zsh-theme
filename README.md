@@ -3,7 +3,7 @@
 > Minimal, clean and fast ZSH prompt theme
 
 ![](./.github/terminal.png)
-*Blox theme, with base16-default and Fira-Code*
+*Screenshot: Blox theme with default settings, base16-default, Fira-Code and zsh-syntax-highlighting*
 
 Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks: each block is shown inside a pair of [square brackets].
 
