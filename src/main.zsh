@@ -129,18 +129,28 @@ function blox_hook__build_prompt() {
   # Spacessss
   spacing="$(blox_helper__calculate_spaces ${upper_left} ${upper_right})"
 
+  # In oneline mode, we set $PROMPT to the
+  # upper left segment and $RPROMPT to the upper
+  # right. In multiline mode, $RPROMPT goes to the bottom
+  # line so we set the first line of $PROMPT to the upper segments
+  # while the second line to only the the lower left. Then,
+  # $RPROMPT is set to the lower right segment.
+
   # Check if in oneline mode
   if [[ $BLOX_CONF__ONELINE == true ]]; then
 
     # Setting only the upper segments
     PROMPT='
-${upper_left}${spacing}${upper_right} '
+${upper_left}'
+
+    # Right segment
+    RPROMPT='${upper_right}'
   else
 
     # The prompt
     PROMPT='
 ${upper_left}${spacing}${upper_right}
-${lower_left} '
+${lower_left}'
 
     # Right prompt
     RPROMPT='${lower_right}'
@@ -183,13 +193,10 @@ function TRAPUSR2 {
 
   # Reset process number
   ASYNC_PROC=0
-
-  # Reload the prompt
-  zle && zle reset-prompt && printf '\n'
 }
 
 # --------------------------------------------- #
-# | Setup hookd
+# | Setup hooks
 # --------------------------------------------- #
 function precmd() {
 
