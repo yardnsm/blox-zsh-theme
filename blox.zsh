@@ -391,7 +391,7 @@ function blox_hook__build_prompt() {
 
     # Setting only the upper segments
     PROMPT='
-${upper_left}'
+${upper_left} '
 
     # Right segment
     RPROMPT='${upper_right}'
@@ -400,7 +400,7 @@ ${upper_left}'
     # The prompt
     PROMPT='
 ${upper_left}${spacing}${upper_right}
-${lower_left}'
+${lower_left} '
 
     # Right prompt
     RPROMPT='${lower_right}'
