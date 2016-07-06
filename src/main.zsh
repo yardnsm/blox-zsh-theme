@@ -167,7 +167,8 @@ function blox_hook__async() {
   function async {
 
     # Fetch the data from git
-    git fetch &> /dev/null
+    is_fetchable=$(git rev-parse HEAD &> /dev/null)
+    [[ is_fetchable ]] && git fetch &> /dev/null
 
     # Signal the parent shell to update the prompt
     kill -s USR2 $$

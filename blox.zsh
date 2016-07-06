@@ -110,7 +110,7 @@ BLOX_BLOCK__GIT_THEME_UNPUSHED="%{$fg[${BLOX_BLOCK__GIT_UNPUSHED_COLOR}]%}$BLOX_
 
 # Get commit hash
 function blox_block__git_helper__commit() {
-  echo $(command git rev-parse --short HEAD)
+  echo $(command git rev-parse --short HEAD  2> /dev/null)
 }
 
 # Get the current branch
@@ -417,7 +417,8 @@ function blox_hook__async() {
   function async {
 
     # Fetch the data from git
-    git fetch &> /dev/null
+    is_fetchable=$(git rev-parse HEAD &> /dev/null)
+    [[ is_fetchable ]] && git fetch &> /dev/null
 
     # Signal the parent shell to update the prompt
     kill -s USR2 $$

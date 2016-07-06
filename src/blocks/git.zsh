@@ -32,7 +32,7 @@ BLOX_BLOCK__GIT_THEME_UNPUSHED="%{$fg[${BLOX_BLOCK__GIT_UNPUSHED_COLOR}]%}$BLOX_
 
 # Get commit hash
 function blox_block__git_helper__commit() {
-  echo $(command git rev-parse --short HEAD)
+  echo $(command git rev-parse --short HEAD  2> /dev/null)
 }
 
 # Get the current branch
