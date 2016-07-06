@@ -145,7 +145,7 @@ Shows ruby version if there is a `Gemfile` file in the working directory.
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
-| `BLOX_BLOCK__RUBY_SYMBOL` | `'♦'` | The indicator to show |
+| `BLOX_BLOCK__RUBY_SYMBOL` | `'♢'` | The indicator to show |
 | `BLOX_BLOCK__RUBY_COLOR` | `'red'` | The block's color |
 
 ---
