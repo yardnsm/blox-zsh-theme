@@ -34,7 +34,7 @@ BLOX_CONF__ONELINE="${BLOX_CONF__ONELINE:-false}"
 
 # Upper
 BLOX_SEG__UPPER_LEFT="${BLOX_SEG__UPPER_LEFT:-blox_block__host,blox_core__cwd,blox_block__git}"
-BLOX_SEG__UPPER_RIGHT="${BLOX_SEG__UPPER_RIGHT:-blox_block__bgjobs,blox_block__nodejs,blox_block__time}"
+BLOX_SEG__UPPER_RIGHT="${BLOX_SEG__UPPER_RIGHT:-blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time}"
 
 # Lower
 BLOX_SEG__LOWER_LEFT="${BLOX_SEG__LOWER_LEFT:-blox_core__symbol}"
