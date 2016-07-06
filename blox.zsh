@@ -262,7 +262,7 @@ function blox_block__ruby() {
   # Build the block
   if [[ ! -z "${ruby_version}" ]]; then
     res+="%{$fg[${BLOX_BLOCK__RUBY_COLOR}]%}"
-    res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__RUBY_SYMBOL} ${ruby_version:1}${BLOX_CONF__BLOCK_SUFFIX}";
+    res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__RUBY_SYMBOL} ${ruby_version}${BLOX_CONF__BLOCK_SUFFIX}";
     res+="%{$reset_color%}"
   fi
 
