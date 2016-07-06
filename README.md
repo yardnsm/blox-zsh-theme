@@ -132,12 +132,21 @@ Shows the time in `HH:mm` format
 
 #### `blox_block__nodejs`
 
-Shows nodejs versions if there is a `package.json` file in the working directory.
+Shows nodejs version if there is a `package.json` file in the working directory.
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
 | `BLOX_BLOCK__NODEJS_SYMBOL` | `'⬢'` | The indicator to show |
 | `BLOX_BLOCK__NODEJS_COLOR` | `'green'` | The block's color |
+
+#### `blox_block__ruby`
+
+Shows ruby version if there is a `Gemfile` file in the working directory.
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__RUBY_SYMBOL` | `'♦'` | The indicator to show |
+| `BLOX_BLOCK__RUBY_COLOR` | `'red'` | The block's color |
 
 ---
 
@@ -164,7 +173,7 @@ You can make the prompt oneline instead of multiline by changing the value of `B
 | Variable | Default |
 | :------- | :------ |
 | `BLOX_SEG__UPPER_LEFT` | `'blox_block__host,blox_core__cwd,blox_block__git'` |
-| `BLOX_SEG__UPPER_RIGHT` | `'blox_block__bgjobs,blox_block__nodejs,blox_block__time'` |
+| `BLOX_SEG__UPPER_RIGHT` | `'blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time'` |
 | `BLOX_SEG__LOWER_LEFT` | `'blox_core__symbol'` |
 | `BLOX_SEG__LOWER_RIGHT` | `''` |
 
