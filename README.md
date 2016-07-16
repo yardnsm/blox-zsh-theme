@@ -23,6 +23,14 @@ Simply add the following into your `~/.zshrc`
 antigen bundle yardnsm/blox-zsh-theme
 ```
 
+### For zgen users
+
+Similarly to antigen, just add the following to your `~/.zshrc`:
+
+```console
+zgen load yardnsm/blox-zsh-theme
+```
+
 ### For oh-my-zsh users
 
 1. Symlink (or copy) `blox.zsh` to `~/.oh-my-zsh/custom/themes/blox.zsh-theme`.
