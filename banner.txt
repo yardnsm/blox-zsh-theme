@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+#
+# BLOX - zsh theme
+#
+# Author: Yarden Sod-Moriah <yardnsm@gmail.com> (yardnsm.net)
+# License: MIT
+# Repository: https://github.com/yardnsm/blox-zsh-theme
+#
+

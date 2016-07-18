@@ -61,7 +61,7 @@ To build the theme from source, simply run `build.sh`. It will concatenate all o
 
 ![](./.github/terminal-sliced.png)
 
-The main idea of this theme is dividing the prompt into blocks. There are core blocks, which are the most simple and basic blocks (like the current working directory), and there are modular blocks which can be arranged and modified. Each block has its options, which can also be customized.
+The main idea of this theme is dividing the prompt into blocks. The blocks are modular and they could be arranged and modified. Each block has its options, which can also be customized.
 
 The following sections describe the built-in blocks and their customizing options.
 
@@ -73,30 +73,28 @@ The following sections describe the built-in blocks and their customizing option
 | `BLOX_CONF__BLOCK_SUFFIX` | `']'` | Block's suffix |
 | `BLOX_CONF__ONELINE` | `false` | **When setting to `true`, the lower segments will be disabled** |
 
-### Core blocks
+### Built-in blocks
 
-#### `blox_core__cwd`
+#### `blox_block__cwd`
 
 Displays the current working directory.
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
-| `BLOX_CORE__CWD_COLOR` | `'blue'` | This block's color |
-| `BLOX_CORE__CWD_TRUNC` | `3` | Number of folders of cwd to show in prompt (0 to show all) |
+| `BLOX_BLOCK__CWD_COLOR` | `'blue'` | This block's color |
+| `BLOX_BLOCK__CWD_TRUNC` | `3` | Number of folders of cwd to show in prompt (0 to show all) |
 
-#### `blox_core__symbol`
+#### `blox_block__symbol`
 
 The prompt's symbol.
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
-| `BLOX_CORE__SYMBOL_COLOR` | `'cyan'` | The symbol's color |
-| `BLOX_CORE__SYMBOL_EXIT_COLOR` | `'red'` | The symbol's color when last command didn't exit with `0` |
-| `BLOX_CORE__SYMBOL_SYMBOL` | `'❯'` | The symbol |
-| `BLOX_CORE__SYMBOL_EXIT_SYMBOL` | `'❯'` | The symbol when last command didn't exit with `0` |
-| `BLOX_CORE__SYMBOL_ALTERNATE` | `'◇'` | Alternate symbol (used as PROMPT2) |
-
-### Built-in modular blocks
+| `BLOX_BLOCK__SYMBOL_COLOR` | `'cyan'` | The symbol's color |
+| `BLOX_BLOCK__SYMBOL_EXIT_COLOR` | `'red'` | The symbol's color when last command didn't exit with `0` |
+| `BLOX_BLOCK__SYMBOL_SYMBOL` | `'❯'` | The symbol |
+| `BLOX_BLOCK__SYMBOL_EXIT_SYMBOL` | `'❯'` | The symbol when last command didn't exit with `0` |
+| `BLOX_BLOCK__SYMBOL_ALTERNATE` | `'◇'` | Alternate symbol (used as PROMPT2) |
 
 #### `blox_block__git`
 
@@ -180,9 +178,9 @@ You can make the prompt oneline instead of multiline by changing the value of `B
 
 | Variable | Default |
 | :------- | :------ |
-| `BLOX_SEG__UPPER_LEFT` | `'blox_block__host,blox_core__cwd,blox_block__git'` |
+| `BLOX_SEG__UPPER_LEFT` | `'blox_block__host,blox_block__cwd,blox_block__git'` |
 | `BLOX_SEG__UPPER_RIGHT` | `'blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time'` |
-| `BLOX_SEG__LOWER_LEFT` | `'blox_core__symbol'` |
+| `BLOX_SEG__LOWER_LEFT` | `'blox_block__symbol'` |
 | `BLOX_SEG__LOWER_RIGHT` | `''` |
 
 ---

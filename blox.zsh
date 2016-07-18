@@ -1,20 +1,30 @@
+#!/usr/bin/env zsh
+
+#
+# BLOX - zsh theme
+#
+# Author: Yarden Sod-Moriah <yardnsm@gmail.com> (yardnsm.net)
+# License: MIT
+# Repository: https://github.com/yardnsm/blox-zsh-theme
+#
+
 # --------------------------------------------- #
 # | Block options
 # --------------------------------------------- #
-BLOX_CORE__CWD_COLOR="${BLOX_CORE__CWD_COLOR:-blue}"
-BLOX_CORE__CWD_TRUNC="${BLOX_CORE__CWD_TRUNC:-3}"
+BLOX_BLOCK__CWD_COLOR="${BLOX_BLOCK__CWD_COLOR:-blue}"
+BLOX_BLOCK__CWD_TRUNC="${BLOX_BLOCK__CWD_TRUNC:-3}"
 
 # --------------------------------------------- #
 # | The block itself
 # --------------------------------------------- #
-function blox_core__cwd() {
+function blox_block__cwd() {
 
   # Final result
   res=""
 
   # Append those
-  res+="%{$fg_bold[${BLOX_CORE__CWD_COLOR}]%}"
-  res+="%${BLOX_CORE__CWD_TRUNC}~";
+  res+="%{$fg_bold[${BLOX_BLOCK__CWD_COLOR}]%}"
+  res+="%${BLOX_BLOCK__CWD_TRUNC}~";
   res+="%{$reset_color%}"
 
   # Echo result
@@ -25,25 +35,25 @@ function blox_core__cwd() {
 # --------------------------------------------- #
 
 # Colors
-BLOX_CORE__SYMBOL_COLOR="${BLOX_CORE__SYMBOL_COLOR:-cyan}"
-BLOX_CORE__SYMBOL_EXIT_COLOR="${BLOX_CORE__SYMBOL_EXIT_COLOR:-red}"
+BLOX_BLOCK__SYMBOL_COLOR="${BLOX_BLOCK__SYMBOL_COLOR:-cyan}"
+BLOX_BLOCK__SYMBOL_EXIT_COLOR="${BLOX_BLOCK__SYMBOL_EXIT_COLOR:-red}"
 
 # Symbols
-BLOX_CORE__SYMBOL_SYMBOL="${BLOX_CORE__SYMBOL_SYMBOL:-❯}"
-BLOX_CORE__SYMBOL_EXIT_SYMBOL="${BLOX_CORE__SYMBOL_EXIT_SYMBOL:-$BLOX_CORE__SYMBOL_SYMBOL}"
-BLOX_CORE__SYMBOL_ALTERNATE="${BLOX_CORE__SYMBOL_ALTERNATE:-◇}"
+BLOX_BLOCK__SYMBOL_SYMBOL="${BLOX_BLOCK__SYMBOL_SYMBOL:-❯}"
+BLOX_BLOCK__SYMBOL_EXIT_SYMBOL="${BLOX_BLOCK__SYMBOL_EXIT_SYMBOL:-$BLOX_BLOCK__SYMBOL_SYMBOL}"
+BLOX_BLOCK__SYMBOL_ALTERNATE="${BLOX_BLOCK__SYMBOL_ALTERNATE:-◇}"
 
 # --------------------------------------------- #
 # | The block itself
 # --------------------------------------------- #
-function blox_core__symbol() {
+function blox_block__symbol() {
 
   # Final result
   res=""
 
   # Append those
-  res+="%{$fg[${BLOX_CORE__SYMBOL_COLOR}]%}"
-  res+="%(?.$BLOX_CORE__SYMBOL_SYMBOL.%{$fg[red]%}$BLOX_CORE__SYMBOL_EXIT_SYMBOL)";
+  res+="%{$fg[${BLOX_BLOCK__SYMBOL_COLOR}]%}"
+  res+="%(?.$BLOX_BLOCK__SYMBOL_SYMBOL.%{$fg[red]%}$BLOX_BLOCK__SYMBOL_EXIT_SYMBOL)";
   res+="%{$reset_color%}"
 
   # Echo the result
@@ -275,16 +285,6 @@ function blox_block__ruby() {
 function blox_block__time() {
   echo "${BLOX_CONF__BLOCK_PREFIX}%T${BLOX_CONF__BLOCK_SUFFIX}"
 }
-#!/usr/bin/env zsh
-
-#
-# BLOX - zsh theme
-#
-# Author: Yarden Sod-Moriah <yardnsm@gmail.com> (yardnsm.net)
-# License: MIT
-# Repository: https://github.com/yardnsm/blox-zsh-theme
-#
-
 # --------------------------------------------- #
 # | Initialize stuff
 # --------------------------------------------- #
@@ -310,11 +310,11 @@ BLOX_CONF__ONELINE="${BLOX_CONF__ONELINE:-false}"
 # --------------------------------------------- #
 
 # Upper
-BLOX_SEG__UPPER_LEFT="${BLOX_SEG__UPPER_LEFT:-blox_block__host,blox_core__cwd,blox_block__git}"
+BLOX_SEG__UPPER_LEFT="${BLOX_SEG__UPPER_LEFT:-blox_block__host,blox_block__cwd,blox_block__git}"
 BLOX_SEG__UPPER_RIGHT="${BLOX_SEG__UPPER_RIGHT:-blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time}"
 
 # Lower
-BLOX_SEG__LOWER_LEFT="${BLOX_SEG__LOWER_LEFT:-blox_core__symbol}"
+BLOX_SEG__LOWER_LEFT="${BLOX_SEG__LOWER_LEFT:-blox_block__symbol}"
 BLOX_SEG__LOWER_RIGHT="${BLOX_SEG__LOWER_RIGHT:-}"
 
 # --------------------------------------------- #
@@ -434,7 +434,7 @@ ${lower_left} '
   fi
 
   # PROMPT2 (continuation interactive prompt)
-  PROMPT2=' ${BLOX_CORE__SYMBOL_ALTERNATE} %_ >>> '
+  PROMPT2=' ${BLOX_BLOCK__SYMBOL_ALTERNATE} %_ >>> '
 }
 
 # Async stuff (for git fetch)

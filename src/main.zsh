@@ -1,13 +1,3 @@
-#!/usr/bin/env zsh
-
-#
-# BLOX - zsh theme
-#
-# Author: Yarden Sod-Moriah <yardnsm@gmail.com> (yardnsm.net)
-# License: MIT
-# Repository: https://github.com/yardnsm/blox-zsh-theme
-#
-
 # --------------------------------------------- #
 # | Initialize stuff
 # --------------------------------------------- #
@@ -33,11 +23,11 @@ BLOX_CONF__ONELINE="${BLOX_CONF__ONELINE:-false}"
 # --------------------------------------------- #
 
 # Upper
-BLOX_SEG__UPPER_LEFT="${BLOX_SEG__UPPER_LEFT:-blox_block__host,blox_core__cwd,blox_block__git}"
+BLOX_SEG__UPPER_LEFT="${BLOX_SEG__UPPER_LEFT:-blox_block__host,blox_block__cwd,blox_block__git}"
 BLOX_SEG__UPPER_RIGHT="${BLOX_SEG__UPPER_RIGHT:-blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time}"
 
 # Lower
-BLOX_SEG__LOWER_LEFT="${BLOX_SEG__LOWER_LEFT:-blox_core__symbol}"
+BLOX_SEG__LOWER_LEFT="${BLOX_SEG__LOWER_LEFT:-blox_block__symbol}"
 BLOX_SEG__LOWER_RIGHT="${BLOX_SEG__LOWER_RIGHT:-}"
 
 # --------------------------------------------- #
@@ -157,7 +147,7 @@ ${lower_left} '
   fi
 
   # PROMPT2 (continuation interactive prompt)
-  PROMPT2=' ${BLOX_CORE__SYMBOL_ALTERNATE} %_ >>> '
+  PROMPT2=' ${BLOX_BLOCK__SYMBOL_ALTERNATE} %_ >>> '
 }
 
 # Async stuff (for git fetch)
