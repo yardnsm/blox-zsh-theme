@@ -9,58 +9,7 @@
 #
 
 # --------------------------------------------- #
-# | Block options
-# --------------------------------------------- #
-BLOX_BLOCK__CWD_COLOR="${BLOX_BLOCK__CWD_COLOR:-blue}"
-BLOX_BLOCK__CWD_TRUNC="${BLOX_BLOCK__CWD_TRUNC:-3}"
-
-# --------------------------------------------- #
-# | The block itself
-# --------------------------------------------- #
-function blox_block__cwd() {
-
-  # Final result
-  res=""
-
-  # Append those
-  res+="%{$fg_bold[${BLOX_BLOCK__CWD_COLOR}]%}"
-  res+="%${BLOX_BLOCK__CWD_TRUNC}~";
-  res+="%{$reset_color%}"
-
-  # Echo result
-  echo $res
-}
-# --------------------------------------------- #
-# | Block options
-# --------------------------------------------- #
-
-# Colors
-BLOX_BLOCK__SYMBOL_COLOR="${BLOX_BLOCK__SYMBOL_COLOR:-cyan}"
-BLOX_BLOCK__SYMBOL_EXIT_COLOR="${BLOX_BLOCK__SYMBOL_EXIT_COLOR:-red}"
-
-# Symbols
-BLOX_BLOCK__SYMBOL_SYMBOL="${BLOX_BLOCK__SYMBOL_SYMBOL:-❯}"
-BLOX_BLOCK__SYMBOL_EXIT_SYMBOL="${BLOX_BLOCK__SYMBOL_EXIT_SYMBOL:-$BLOX_BLOCK__SYMBOL_SYMBOL}"
-BLOX_BLOCK__SYMBOL_ALTERNATE="${BLOX_BLOCK__SYMBOL_ALTERNATE:-◇}"
-
-# --------------------------------------------- #
-# | The block itself
-# --------------------------------------------- #
-function blox_block__symbol() {
-
-  # Final result
-  res=""
-
-  # Append those
-  res+="%{$fg[${BLOX_BLOCK__SYMBOL_COLOR}]%}"
-  res+="%(?.$BLOX_BLOCK__SYMBOL_SYMBOL.%{$fg[red]%}$BLOX_BLOCK__SYMBOL_EXIT_SYMBOL)";
-  res+="%{$reset_color%}"
-
-  # Echo the result
-  echo $res
-}
-# --------------------------------------------- #
-# | Block options
+# | Background jobs block options
 # --------------------------------------------- #
 BLOX_BLOCK__BGJOBS_SYMBOL="${BLOX_BLOCK__BGJOBS_SYMBOL:-*}"
 BLOX_BLOCK__BGJOBS_COLOR="${BLOX_BLOCK__BGJOBS_COLOR:-magenta}"
@@ -87,7 +36,29 @@ function blox_block__bgjobs() {
   echo $res
 }
 # --------------------------------------------- #
-# | Block options
+# | CWD block options
+# --------------------------------------------- #
+BLOX_BLOCK__CWD_COLOR="${BLOX_BLOCK__CWD_COLOR:-blue}"
+BLOX_BLOCK__CWD_TRUNC="${BLOX_BLOCK__CWD_TRUNC:-3}"
+
+# --------------------------------------------- #
+# | The block itself
+# --------------------------------------------- #
+function blox_block__cwd() {
+
+  # Final result
+  res=""
+
+  # Append those
+  res+="%{$fg_bold[${BLOX_BLOCK__CWD_COLOR}]%}"
+  res+="%${BLOX_BLOCK__CWD_TRUNC}~";
+  res+="%{$reset_color%}"
+
+  # Echo result
+  echo $res
+}
+# --------------------------------------------- #
+# | Git block options
 # --------------------------------------------- #
 
 # Clean
@@ -183,7 +154,7 @@ function blox_block__git() {
   fi
 }
 # --------------------------------------------- #
-# | Block options
+# | Host info block options
 # --------------------------------------------- #
 
 # User
@@ -226,7 +197,7 @@ function blox_block__host() {
   fi
 }
 # --------------------------------------------- #
-# | Block options
+# | NodeJS block options
 # --------------------------------------------- #
 BLOX_BLOCK__NODEJS_SYMBOL="${BLOX_BLOCK__NODEJS_SYMBOL:-⬢}"
 BLOX_BLOCK__NODEJS_COLOR="${BLOX_BLOCK__NODEJS_COLOR:-green}"
@@ -253,7 +224,7 @@ function blox_block__nodejs() {
   echo $res
 }
 # --------------------------------------------- #
-# | Block options
+# | Ruby block options
 # --------------------------------------------- #
 BLOX_BLOCK__RUBY_SYMBOL="${BLOX_BLOCK__RUBY_SYMBOL:-♢}"
 BLOX_BLOCK__RUBY_COLOR="${BLOX_BLOCK__RUBY_COLOR:-red}"
@@ -280,7 +251,36 @@ function blox_block__ruby() {
   echo $res
 }
 # --------------------------------------------- #
+# | Symbol block options
+# --------------------------------------------- #
+
+# Colors
+BLOX_BLOCK__SYMBOL_COLOR="${BLOX_BLOCK__SYMBOL_COLOR:-cyan}"
+BLOX_BLOCK__SYMBOL_EXIT_COLOR="${BLOX_BLOCK__SYMBOL_EXIT_COLOR:-red}"
+
+# Symbols
+BLOX_BLOCK__SYMBOL_SYMBOL="${BLOX_BLOCK__SYMBOL_SYMBOL:-❯}"
+BLOX_BLOCK__SYMBOL_EXIT_SYMBOL="${BLOX_BLOCK__SYMBOL_EXIT_SYMBOL:-$BLOX_BLOCK__SYMBOL_SYMBOL}"
+BLOX_BLOCK__SYMBOL_ALTERNATE="${BLOX_BLOCK__SYMBOL_ALTERNATE:-◇}"
+
+# --------------------------------------------- #
 # | The block itself
+# --------------------------------------------- #
+function blox_block__symbol() {
+
+  # Final result
+  res=""
+
+  # Append those
+  res+="%{$fg[${BLOX_BLOCK__SYMBOL_COLOR}]%}"
+  res+="%(?.$BLOX_BLOCK__SYMBOL_SYMBOL.%{$fg[red]%}$BLOX_BLOCK__SYMBOL_EXIT_SYMBOL)";
+  res+="%{$reset_color%}"
+
+  # Echo the result
+  echo $res
+}
+# --------------------------------------------- #
+# | Time block
 # --------------------------------------------- #
 function blox_block__time() {
   echo "${BLOX_CONF__BLOCK_PREFIX}%T${BLOX_CONF__BLOCK_SUFFIX}"

@@ -1,5 +1,5 @@
 # --------------------------------------------- #
-# | Block options
+# | Background jobs block options
 # --------------------------------------------- #
 BLOX_BLOCK__BGJOBS_SYMBOL="${BLOX_BLOCK__BGJOBS_SYMBOL:-*}"
 BLOX_BLOCK__BGJOBS_COLOR="${BLOX_BLOCK__BGJOBS_COLOR:-magenta}"

@@ -1,5 +1,5 @@
 # --------------------------------------------- #
-# | Block options
+# | NodeJS block options
 # --------------------------------------------- #
 BLOX_BLOCK__NODEJS_SYMBOL="${BLOX_BLOCK__NODEJS_SYMBOL:-⬢}"
 BLOX_BLOCK__NODEJS_COLOR="${BLOX_BLOCK__NODEJS_COLOR:-green}"

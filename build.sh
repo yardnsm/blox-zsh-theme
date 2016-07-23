@@ -5,10 +5,10 @@
 # --------------------------------------------- #
 
 echo ""
-echo "  Building Blox [==>]"
+echo "  Building Blox"
 echo "  =============================="
 echo ""
 
-cat banner.txt src/blocks/**/*.zsh src/blocks/*.zsh src/main.zsh > blox.zsh
+cat src/banner.txt src/blocks/*.zsh src/main.zsh > blox.zsh
 
 echo "  DONE. Check 'blox.zsh' file."

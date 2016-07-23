@@ -1,5 +1,5 @@
 # --------------------------------------------- #
-# | Block options
+# | Ruby block options
 # --------------------------------------------- #
 BLOX_BLOCK__RUBY_SYMBOL="${BLOX_BLOCK__RUBY_SYMBOL:-♢}"
 BLOX_BLOCK__RUBY_COLOR="${BLOX_BLOCK__RUBY_COLOR:-red}"

@@ -1,6 +1,6 @@
 # Blox
 
-> Minimal, clean and fast ZSH prompt theme
+> Clean, modular ZSH theme
 
 ![](./.github/terminal.png)
 *Screenshot: Blox theme with default settings, base16-default, Fira-Code and zsh-syntax-highlighting*
@@ -13,7 +13,7 @@ It's highly customizable - you can add blocks by simply creating a function.
 
 ## Install
 
-This theme was tested on oh-my-zsh and antigen, but it should be compatible with almost every zsh framework / plugin manager / whatever. This README includes only a few installation methods:
+This theme was tested on all the following methods, but it should be compatible with almost every zsh framework / plugin manager / whatever.
 
 ### For antigen users
 
@@ -29,6 +29,14 @@ Similarly to antigen, just add the following to your `~/.zshrc`:
 
 ```console
 zgen load yardnsm/blox-zsh-theme
+```
+
+### For antibody users
+
+Again, just add the following to your `~/.zshrc`:
+
+```console
+antibody bundle yardnsm/blox-zsh-theme
 ```
 
 ### For oh-my-zsh users
@@ -47,9 +55,13 @@ zgen load yardnsm/blox-zsh-theme
 source PATH_FOR_BLOX.zsh
 ```
 
+---
+
+## Hacking
+
 ### Building from source
 
-To build the theme from source, simply run `build.sh`. It will concatenate all of the files in `src` into one, big file.
+To build the theme from source, simply run `build.sh`. It will concatenate all of the files in `src` into one, (not so) big file.
 
 ```console
 ./build.sh
