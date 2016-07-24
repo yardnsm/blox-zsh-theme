@@ -11,6 +11,9 @@ autoload -Uz promptinit && promptinit
 # Initialize colors
 autoload -Uz colors && colors
 
+# Hooks
+autoload -U add-zsh-hook
+
 # --------------------------------------------- #
 # | Core options
 # --------------------------------------------- #
@@ -189,14 +192,12 @@ function TRAPUSR2 {
 # --------------------------------------------- #
 # | Setup hooks
 # --------------------------------------------- #
-function precmd() {
 
-  # Build the prompt
-  blox_hook__build_prompt
+# Build the prompt
+add-zsh-hook precmd blox_hook__build_prompt
 
-  # Start sync process
-  blox_hook__async
+# Start sync process
+add-zsh-hook precmd blox_hook__async
 
-  # Set title
-  blox_hook__title
-}
+# Set title
+add-zsh-hook precmd blox_hook__title
