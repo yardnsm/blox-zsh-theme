@@ -197,6 +197,14 @@ You can make the prompt oneline instead of multiline by changing the value of `B
 
 ---
 
+## TODOs:
+
+- [ ] **Add more git info**
+- [ ] Add an option for dividers between common blocks (user-info, cwd, git...)
+- [ ] What about a customizable structure for the git block?
+
+---
+
 ## License
 
 MIT © [Yarden Sod-Moriah](http://yardnsm.net/)
