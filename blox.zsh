@@ -273,7 +273,7 @@ function blox_block__symbol() {
 
   # Append those
   res+="%{$fg[${BLOX_BLOCK__SYMBOL_COLOR}]%}"
-  res+="%(?.$BLOX_BLOCK__SYMBOL_SYMBOL.%{$fg[red]%}$BLOX_BLOCK__SYMBOL_EXIT_SYMBOL)";
+  res+="%(?.$BLOX_BLOCK__SYMBOL_SYMBOL.%{$fg[$BLOX_BLOCK__SYMBOL_EXIT_COLOR]%}$BLOX_BLOCK__SYMBOL_EXIT_SYMBOL)";
   res+="%{$reset_color%}"
 
   # Echo the result
