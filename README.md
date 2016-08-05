@@ -200,6 +200,7 @@ You can make the prompt oneline instead of multiline by changing the value of `B
 ## TODOs:
 
 - [ ] **Add more git info**
+- [ ] Fix the spacing issues for real
 - [ ] Add an option for dividers between common blocks (user-info, cwd, git...)
 - [ ] Add an option to disable the newline character
 - [ ] What about a customizable structure for the git block?
