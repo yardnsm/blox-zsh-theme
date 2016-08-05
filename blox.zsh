@@ -216,7 +216,7 @@ function blox_block__nodejs() {
   # Build the block
   if [[ ! -z "${node_version}" ]]; then
     res+="%{$fg[${BLOX_BLOCK__NODEJS_COLOR}]%}"
-    res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__NODEJS_SYMBOL} ${node_version:1}${BLOX_CONF__BLOCK_SUFFIX}";
+    res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__NODEJS_SYMBOL} ${node_version:1}${BLOX_CONF__BLOCK_SUFFIX}"
     res+="%{$reset_color%}"
   fi
 
@@ -404,7 +404,7 @@ function blox_hook__build_prompt() {
   upper_left="$(blox_helper__build_segment $BLOX_SEG__UPPER_LEFT)"
   upper_right="$(blox_helper__build_segment $BLOX_SEG__UPPER_RIGHT)  "
   lower_left="$(blox_helper__build_segment $BLOX_SEG__LOWER_LEFT)"
-  lower_right="$(blox_helper__build_segment $BLOX_SEG__LOWER_RIGHT)  "
+  lower_right="$(blox_helper__build_segment $BLOX_SEG__LOWER_RIGHT) "
 
   # Spacessss
   spacing="$(blox_helper__calculate_spaces ${upper_left} ${upper_right})"

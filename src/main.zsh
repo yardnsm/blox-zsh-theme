@@ -117,7 +117,7 @@ function blox_hook__build_prompt() {
   upper_left="$(blox_helper__build_segment $BLOX_SEG__UPPER_LEFT)"
   upper_right="$(blox_helper__build_segment $BLOX_SEG__UPPER_RIGHT)  "
   lower_left="$(blox_helper__build_segment $BLOX_SEG__LOWER_LEFT)"
-  lower_right="$(blox_helper__build_segment $BLOX_SEG__LOWER_RIGHT)  "
+  lower_right="$(blox_helper__build_segment $BLOX_SEG__LOWER_RIGHT) "
 
   # Spacessss
   spacing="$(blox_helper__calculate_spaces ${upper_left} ${upper_right})"

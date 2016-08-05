@@ -201,6 +201,7 @@ You can make the prompt oneline instead of multiline by changing the value of `B
 
 - [ ] **Add more git info**
 - [ ] Add an option for dividers between common blocks (user-info, cwd, git...)
+- [ ] Add an option to disable the newline character
 - [ ] What about a customizable structure for the git block?
 
 ---
