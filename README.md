@@ -84,6 +84,7 @@ The following sections describe the built-in blocks and their customizing option
 | `BLOX_CONF__BLOCK_PREFIX` | `'['` | Block's prefix |
 | `BLOX_CONF__BLOCK_SUFFIX` | `']'` | Block's suffix |
 | `BLOX_CONF__ONELINE` | `false` | **When setting to `true`, the lower segments will be disabled** |
+| `BLOX_CONF__NEWLINE` | `true` | Adding a newline character after the prompt |
 
 ### Built-in blocks
 
@@ -200,9 +201,7 @@ You can make the prompt oneline instead of multiline by changing the value of `B
 ## TODOs:
 
 - [ ] **Add more git info**
-- [ ] Fix the spacing issues for real
 - [ ] Add an option for dividers between common blocks (user-info, cwd, git...)
-- [ ] Add an option to disable the newline character
 - [ ] What about a customizable structure for the git block?
 
 ---

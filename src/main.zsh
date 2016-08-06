@@ -20,6 +20,14 @@ autoload -U add-zsh-hook
 BLOX_CONF__BLOCK_PREFIX="${BLOX_CONF__BLOCK_PREFIX:-[}"
 BLOX_CONF__BLOCK_SUFFIX="${BLOX_CONF__BLOCK_SUFFIX:-]}"
 BLOX_CONF__ONELINE="${BLOX_CONF__ONELINE:-false}"
+BLOX_CONF__NEWLINE="${BLOX_CONF__NEWLINE:-true}"
+
+# --------------------------------------------- #
+# | Some charcters
+# --------------------------------------------- #
+BLOX_CHAR__SPACE=" "
+BLOX_CHAR__NEWLINE="
+"
 
 # --------------------------------------------- #
 # | Segments
@@ -122,6 +130,9 @@ function blox_hook__build_prompt() {
   # Spacessss
   spacing="$(blox_helper__calculate_spaces ${upper_left} ${upper_right})"
 
+  # Check if a newline char is needed
+  [[ $BLOX_CONF__NEWLINE == false ]] && BLOX_CHAR__NEWLINE=""
+
   # In oneline mode, we set $PROMPT to the
   # upper left segment and $RPROMPT to the upper
   # right. In multiline mode, $RPROMPT goes to the bottom
@@ -133,16 +144,14 @@ function blox_hook__build_prompt() {
   if [[ $BLOX_CONF__ONELINE == true ]]; then
 
     # Setting only the upper segments
-    PROMPT='
-${upper_left} '
+    PROMPT='${BLOX_CHAR__NEWLINE}${upper_left} '
 
     # Right segment
     RPROMPT='${upper_right}'
   else
 
     # The prompt
-    PROMPT='
-${upper_left}${spacing}${upper_right}
+    PROMPT='${BLOX_CHAR__NEWLINE}${upper_left}${spacing}${upper_right}
 ${lower_left} '
 
     # Right prompt
