@@ -33,13 +33,19 @@ BLOX_CHAR__NEWLINE="
 # | Segments
 # --------------------------------------------- #
 
+# Defualts
+BLOX_SEG_DEFAULT__UPPER_LEFT=(blox_block__host blox_block__cwd blox_block__git)
+BLOX_SEG_DEFAULT__UPPER_RIGHT=(blox_block__bgjobs blox_block__nodejs blox_block__time)
+BLOX_SEG_DEFAULT__LOWER_LEFT=(blox_block__symbol)
+BLOX_SEG_DEFAULT__LOWER_RIGHT=()
+
 # Upper
-BLOX_SEG__UPPER_LEFT="${BLOX_SEG__UPPER_LEFT:-blox_block__host,blox_block__cwd,blox_block__git}"
-BLOX_SEG__UPPER_RIGHT="${BLOX_SEG__UPPER_RIGHT:-blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time}"
+BLOX_SEG__UPPER_LEFT=${BLOX_SEG__UPPER_LEFT:-$BLOX_SEG_DEFAULT__UPPER_LEFT}
+BLOX_SEG__UPPER_RIGHT=${BLOX_SEG__UPPER_RIGHT:-$BLOX_SEG_DEFAULT__UPPER_RIGHT}
 
 # Lower
-BLOX_SEG__LOWER_LEFT="${BLOX_SEG__LOWER_LEFT:-blox_block__symbol}"
-BLOX_SEG__LOWER_RIGHT="${BLOX_SEG__LOWER_RIGHT:-}"
+BLOX_SEG__LOWER_LEFT=${BLOX_SEG__LOWER_LEFT:-$BLOX_SEG_DEFAULT__LOWER_LEFT}
+BLOX_SEG__LOWER_RIGHT=${BLOX_SEG__LOWER_RIGHT:-$BLOX_SEG_DEFAULT__LOWER_RIGHT}
 
 # --------------------------------------------- #
 # | Helper functions
@@ -49,14 +55,13 @@ BLOX_SEG__LOWER_RIGHT="${BLOX_SEG__LOWER_RIGHT:-}"
 function blox_helper__build_segment() {
 
   # The segment to build
-  segment=$1
-  blocks=("${(@s/,/)segment}") # Don't ask me
+  segment=(`echo $@`)
 
   # The final segment
   res=""
 
   # Loop on each block
-  for block in $blocks; do
+  for block in ${segment[@]}; do
 
     # Get the block data
     blockData="$($block)"
@@ -162,51 +167,12 @@ ${lower_left} '
   PROMPT2=' ${BLOX_BLOCK__SYMBOL_ALTERNATE} %_ >>> '
 }
 
-# Async stuff (for git fetch)
-ASYNC_PROC=0
-function blox_hook__async() {
-
-  function async {
-
-    # Fetch the data from git
-    is_fetchable=$(git rev-parse HEAD &> /dev/null)
-    [[ is_fetchable ]] && git fetch &> /dev/null
-
-    # Signal the parent shell to update the prompt
-    kill -s USR2 $$
-  }
-
-  # Kill child if necessary
-  if [[ "${ASYNC_PROC}" != 0 ]]; then
-    kill -s HUP $ASYNC_PROC > /dev/null 2>&1 || :
-  fi
-
-  # Build the prompt in a background job
-  async &!
-
-  # Set process pid
-  ASYNC_PROC=$!
-}
-
-# 'Catch' the async process
-function TRAPUSR2 {
-
-  # Re-build the prompt
-  blox_hook__build_prompt
-
-  # Reset process number
-  ASYNC_PROC=0
-}
-
 # --------------------------------------------- #
 # | Setup hooks
 # --------------------------------------------- #
 
 # Build the prompt
 add-zsh-hook precmd blox_hook__build_prompt
-
-# Start sync process
-add-zsh-hook precmd blox_hook__async
 
 # Set title
 add-zsh-hook precmd blox_hook__title

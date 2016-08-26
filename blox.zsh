@@ -63,19 +63,19 @@ function blox_block__cwd() {
 
 # Clean
 BLOX_BLOCK__GIT_CLEAN_COLOR="${BLOX_BLOCK__GIT_CLEAN_COLOR:-green}"
-BLOX_BLOCK__GIT_CLEAN_SYMBOL="${BLOX_BLOCK__GIT_CLEAN_SYMBOL:-☀︎}"
+BLOX_BLOCK__GIT_CLEAN_SYMBOL="${BLOX_BLOCK__GIT_CLEAN_SYMBOL:-✔︎}"
 
 # Dirty
 BLOX_BLOCK__GIT_DIRTY_COLOR="${BLOX_BLOCK__GIT_DIRTY_COLOR:-red}"
-BLOX_BLOCK__GIT_DIRTY_SYMBOL="${BLOX_BLOCK__GIT_DIRTY_SYMBOL:-☂}"
+BLOX_BLOCK__GIT_DIRTY_SYMBOL="${BLOX_BLOCK__GIT_DIRTY_SYMBOL:-✘}"
 
 # Unpulled
 BLOX_BLOCK__GIT_UNPULLED_COLOR="${BLOX_BLOCK__GIT_UNPULLED_COLOR:-red}"
-BLOX_BLOCK__GIT_UNPULLED_SYMBOL="${BLOX_BLOCK__GIT_UNPULLED_SYMBOL:-✈︎}"
+BLOX_BLOCK__GIT_UNPULLED_SYMBOL="${BLOX_BLOCK__GIT_UNPULLED_SYMBOL:-⇣}"
 
 # Unpushed
 BLOX_BLOCK__GIT_UNPUSHED_COLOR="${BLOX_BLOCK__GIT_UNPUSHED_COLOR:-blue}"
-BLOX_BLOCK__GIT_UNPUSHED_SYMBOL="${BLOX_BLOCK__GIT_UNPUSHED_SYMBOL:-☁︎}"
+BLOX_BLOCK__GIT_UNPUSHED_SYMBOL="${BLOX_BLOCK__GIT_UNPUSHED_SYMBOL:-⇡}"
 
 # --------------------------------------------- #
 # | Themes
@@ -89,7 +89,7 @@ BLOX_BLOCK__GIT_THEME_UNPUSHED="%{$fg[${BLOX_BLOCK__GIT_UNPUSHED_COLOR}]%}$BLOX_
 # | Helper functions
 # --------------------------------------------- #
 
-# Get commit hash
+# Get commit hash (short)
 function blox_block__git_helper__commit() {
   echo $(command git rev-parse --short HEAD  2> /dev/null)
 }
@@ -101,8 +101,8 @@ function blox_block__git_helper__branch() {
   echo "${ref#refs/heads/}";
 }
 
-# Checks if working tree is dirty
-blox_block__git_helper__dirty() {
+# Echo the appropriate symbol for branch's status
+blox_block__git_helper__status() {
 
   if [[ -z "$(git status --porcelain --ignore-submodules)" ]]; then
 
@@ -115,8 +115,9 @@ blox_block__git_helper__dirty() {
   fi
 }
 
-# Check remote status (pull/push)
-function blox_block__git_helper__status() {
+# Echo the appropriate symbol for branch's remote status (pull/push)
+# Need to do 'git fetch' before
+function blox_block__git_helper__remote_status() {
 
   local git_local=$(command git rev-parse @ 2> /dev/null)
   local git_remote=$(command git rev-parse @{u} 2> /dev/null)
@@ -138,19 +139,24 @@ function blox_block__git_helper__status() {
   fi
 }
 
+# Checks if cwd is a git repo
+function blox_block__git_helper__is_git_repo() {
+  return $(git rev-parse --git-dir > /dev/null 2>&1)
+}
+
 # --------------------------------------------- #
 # | The block itself
 # --------------------------------------------- #
 function blox_block__git() {
 
-  if git rev-parse --git-dir > /dev/null 2>&1; then
+  if blox_block__git_helper__is_git_repo; then
 
     local branch="%F{242}$(blox_block__git_helper__branch)%{$reset_color%}"
-    local remote="$(blox_block__git_helper__status)"
+    local remote="$(blox_block__git_helper__remote_status)"
     local commit="%{$fg[magenta]%}[$(blox_block__git_helper__commit)]%{$reset_color%}"
-    local dirtyclean="$(blox_block__git_helper__dirty)"
+    local b_status="$(blox_block__git_helper__status)"
 
-	  echo "${branch}${commit} ${dirtyclean}${remote}"
+	  echo "${branch}${commit} ${b_status}${remote}"
   fi
 }
 # --------------------------------------------- #
@@ -217,33 +223,6 @@ function blox_block__nodejs() {
   if [[ ! -z "${node_version}" ]]; then
     res+="%{$fg[${BLOX_BLOCK__NODEJS_COLOR}]%}"
     res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__NODEJS_SYMBOL} ${node_version:1}${BLOX_CONF__BLOCK_SUFFIX}"
-    res+="%{$reset_color%}"
-  fi
-
-  # Echo the block
-  echo $res
-}
-# --------------------------------------------- #
-# | Ruby block options
-# --------------------------------------------- #
-BLOX_BLOCK__RUBY_SYMBOL="${BLOX_BLOCK__RUBY_SYMBOL:-♢}"
-BLOX_BLOCK__RUBY_COLOR="${BLOX_BLOCK__RUBY_COLOR:-red}"
-
-# --------------------------------------------- #
-# | The block itself
-# --------------------------------------------- #
-function blox_block__ruby() {
-
-  [[ ! -f "$(pwd)/Gemfile" ]] && return
-  local ruby_version=$(ruby --version | awk '{print $2}' | awk -F'p' '{print $1}')
-
-  # The result
-  res=""
-
-  # Build the block
-  if [[ ! -z "${ruby_version}" ]]; then
-    res+="%{$fg[${BLOX_BLOCK__RUBY_COLOR}]%}"
-    res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__RUBY_SYMBOL} ${ruby_version}${BLOX_CONF__BLOCK_SUFFIX}";
     res+="%{$reset_color%}"
   fi
 
@@ -320,13 +299,19 @@ BLOX_CHAR__NEWLINE="
 # | Segments
 # --------------------------------------------- #
 
+# Defualts
+BLOX_SEG_DEFAULT__UPPER_LEFT=(blox_block__host blox_block__cwd blox_block__git)
+BLOX_SEG_DEFAULT__UPPER_RIGHT=(blox_block__bgjobs blox_block__nodejs blox_block__time)
+BLOX_SEG_DEFAULT__LOWER_LEFT=(blox_block__symbol)
+BLOX_SEG_DEFAULT__LOWER_RIGHT=()
+
 # Upper
-BLOX_SEG__UPPER_LEFT="${BLOX_SEG__UPPER_LEFT:-blox_block__host,blox_block__cwd,blox_block__git}"
-BLOX_SEG__UPPER_RIGHT="${BLOX_SEG__UPPER_RIGHT:-blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time}"
+BLOX_SEG__UPPER_LEFT=${BLOX_SEG__UPPER_LEFT:-$BLOX_SEG_DEFAULT__UPPER_LEFT}
+BLOX_SEG__UPPER_RIGHT=${BLOX_SEG__UPPER_RIGHT:-$BLOX_SEG_DEFAULT__UPPER_RIGHT}
 
 # Lower
-BLOX_SEG__LOWER_LEFT="${BLOX_SEG__LOWER_LEFT:-blox_block__symbol}"
-BLOX_SEG__LOWER_RIGHT="${BLOX_SEG__LOWER_RIGHT:-}"
+BLOX_SEG__LOWER_LEFT=${BLOX_SEG__LOWER_LEFT:-$BLOX_SEG_DEFAULT__LOWER_LEFT}
+BLOX_SEG__LOWER_RIGHT=${BLOX_SEG__LOWER_RIGHT:-$BLOX_SEG_DEFAULT__LOWER_RIGHT}
 
 # --------------------------------------------- #
 # | Helper functions
@@ -336,14 +321,13 @@ BLOX_SEG__LOWER_RIGHT="${BLOX_SEG__LOWER_RIGHT:-}"
 function blox_helper__build_segment() {
 
   # The segment to build
-  segment=$1
-  blocks=("${(@s/,/)segment}") # Don't ask me
+  segment=(`echo $@`)
 
   # The final segment
   res=""
 
   # Loop on each block
-  for block in $blocks; do
+  for block in ${segment[@]}; do
 
     # Get the block data
     blockData="$($block)"
@@ -449,51 +433,12 @@ ${lower_left} '
   PROMPT2=' ${BLOX_BLOCK__SYMBOL_ALTERNATE} %_ >>> '
 }
 
-# Async stuff (for git fetch)
-ASYNC_PROC=0
-function blox_hook__async() {
-
-  function async {
-
-    # Fetch the data from git
-    is_fetchable=$(git rev-parse HEAD &> /dev/null)
-    [[ is_fetchable ]] && git fetch &> /dev/null
-
-    # Signal the parent shell to update the prompt
-    kill -s USR2 $$
-  }
-
-  # Kill child if necessary
-  if [[ "${ASYNC_PROC}" != 0 ]]; then
-    kill -s HUP $ASYNC_PROC > /dev/null 2>&1 || :
-  fi
-
-  # Build the prompt in a background job
-  async &!
-
-  # Set process pid
-  ASYNC_PROC=$!
-}
-
-# 'Catch' the async process
-function TRAPUSR2 {
-
-  # Re-build the prompt
-  blox_hook__build_prompt
-
-  # Reset process number
-  ASYNC_PROC=0
-}
-
 # --------------------------------------------- #
 # | Setup hooks
 # --------------------------------------------- #
 
 # Build the prompt
 add-zsh-hook precmd blox_hook__build_prompt
-
-# Start sync process
-add-zsh-hook precmd blox_hook__async
 
 # Set title
 add-zsh-hook precmd blox_hook__title
