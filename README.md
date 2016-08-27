@@ -3,8 +3,6 @@
 > Clean, modular ZSH theme
 
 ![](./.github/terminal.png)
-*Screenshot: Blox theme with default settings, base16-default, Fira-Code and zsh-syntax-highlighting*
-
 Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks, and you can play with the order and change everything; it comes with some pre-defined blocks, but you can create your own or even modify them.
 
 ---
