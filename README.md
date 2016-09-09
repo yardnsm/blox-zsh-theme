@@ -187,12 +187,6 @@ You can make the prompt oneline instead of multiline by changing the value of `B
 
 ---
 
-## TODOs:
-
-- [ ] **Add more git info**
-
----
-
 ## License
 
 MIT © [Yarden Sod-Moriah](http://yardnsm.net/)
