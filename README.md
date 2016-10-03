@@ -44,8 +44,8 @@ antibody bundle yardnsm/blox-zsh-theme
 
 1. Get the file `blox.zsh`; Either:
   - Clone this repo
-  - add it as a submodule
-  - just download `blox.zsh`
+  - ... or add it as a submodule.
+  - Just download `blox.zsh`.
 2. `source` it. Simply put the following in your `~/.zshrc`:
 ```console
 source PATH_FOR_BLOX.zsh
@@ -160,7 +160,7 @@ Shows nodejs version if there is a `package.json` file in the working directory.
 
 ### Creating blocks
 
-A block is just a simple function that `echo` the result. Some built-in blocks has they're own helper function you can use when building your blocks. Check the source code for more info.
+A block is just a simple function that `echo` the result. Some built-in blocks has they're own helper function you can use when building your blocks. Check the source code for more info. It is recommended to prefix the function's name with `blox_block__`.
 
 For example:
 
@@ -170,13 +170,13 @@ function blox_block__helloworld() {
 }
 ```
 
-It is recommended to prefix the function's name with `blox_block__`.
+:warning: **Note:** there may be some spacing issues in the upper segments when using multiline mode. To solve this, try wrapping variables (e.g. `$fg[...]`) within a [percent-braces construct](http://unix.stackexchange.com/a/90876) (`%{…%}`);
 
 ### Setting the structure
 
 The prompt consists of 4 segments: upper left, upper right, lower left and lower right. You can set the value of each segment by simply change it's value. The value of a segment is an array of strings representing the block's name.
 
-You can make the prompt oneline instead of multiline by changing the value of `BLOX_CONF__ONELINE`. **This will disable the lower segments!**
+:warning: **Note:** You can make the prompt oneline instead of multiline by changing the value of `BLOX_CONF__ONELINE`. **This will disable the lower segments!**
 
 | Variable | Default |
 | :------- | :------ |
