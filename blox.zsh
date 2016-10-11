@@ -20,15 +20,15 @@ BLOX_BLOCK__BGJOBS_COLOR="${BLOX_BLOCK__BGJOBS_COLOR:-magenta}"
 function blox_block__bgjobs() {
 
   # The jobs
-  bgjobs=$(jobs 2> /dev/null)
+  bgjobs=$(jobs | wc -l | awk '{print $1}' 2> /dev/null)
 
   # The result
   res=""
 
   # Check if there any
-  if [[ ! $bgjobs == "" ]]; then
+  if [[ ! $bgjobs == "0" ]]; then
     res+="%{$fg[${BLOX_BLOCK__BGJOBS_COLOR}]%}"
-    res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__BGJOBS_SYMBOL}${BLOX_CONF__BLOCK_SUFFIX}";
+    res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__BGJOBS_SYMBOL}${bgjobs}${BLOX_CONF__BLOCK_SUFFIX}";
     res+="%{$reset_color%}"
   fi
 
@@ -63,7 +63,7 @@ function blox_block__cwd() {
 
 # Clean
 BLOX_BLOCK__GIT_CLEAN_COLOR="${BLOX_BLOCK__GIT_CLEAN_COLOR:-green}"
-BLOX_BLOCK__GIT_CLEAN_SYMBOL="${BLOX_BLOCK__GIT_CLEAN_SYMBOL:-✔︎}"
+BLOX_BLOCK__GIT_CLEAN_SYMBOL="${BLOX_BLOCK__GIT_CLEAN_SYMBOL:-✔︎%{ %}}"
 
 # Dirty
 BLOX_BLOCK__GIT_DIRTY_COLOR="${BLOX_BLOCK__GIT_DIRTY_COLOR:-red}"
@@ -348,7 +348,7 @@ function blox_helper__calculate_spaces() {
   left=$1
   right=$2
 
-  # The filter (to ignore ansi colors)
+  # The filter (to ignore ansi escapes)
   local zero='%([BSUbfksu]|([FBK]|){*})'
 
   # Filtering

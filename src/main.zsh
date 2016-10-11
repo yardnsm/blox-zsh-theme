@@ -82,7 +82,7 @@ function blox_helper__calculate_spaces() {
   left=$1
   right=$2
 
-  # The filter (to ignore ansi colors)
+  # The filter (to ignore ansi escapes)
   local zero='%([BSUbfksu]|([FBK]|){*})'
 
   # Filtering
