@@ -1,6 +1,5 @@
-# --------------------------------------------- #
-# | Initialize stuff
-# --------------------------------------------- #
+# ---------------------------------------------
+# Initialize stuff
 
 # Enable command substitution in prompt
 setopt prompt_subst
@@ -14,24 +13,20 @@ autoload -Uz colors && colors
 # Hooks
 autoload -U add-zsh-hook
 
-# --------------------------------------------- #
-# | Core options
-# --------------------------------------------- #
+# ---------------------------------------------
+
+# Core options
 BLOX_CONF__BLOCK_PREFIX="${BLOX_CONF__BLOCK_PREFIX:-[}"
 BLOX_CONF__BLOCK_SUFFIX="${BLOX_CONF__BLOCK_SUFFIX:-]}"
 BLOX_CONF__ONELINE="${BLOX_CONF__ONELINE:-false}"
 BLOX_CONF__NEWLINE="${BLOX_CONF__NEWLINE:-true}"
 
-# --------------------------------------------- #
-# | Some charcters
-# --------------------------------------------- #
 BLOX_CHAR__SPACE=" "
 BLOX_CHAR__NEWLINE="
 "
 
-# --------------------------------------------- #
-# | Segments
-# --------------------------------------------- #
+# ---------------------------------------------
+# Segments
 
 # Defualts
 BLOX_SEG_DEFAULT__UPPER_LEFT=(blox_block__host blox_block__cwd blox_block__git)
@@ -47,9 +42,8 @@ BLOX_SEG__UPPER_RIGHT=${BLOX_SEG__UPPER_RIGHT:-$BLOX_SEG_DEFAULT__UPPER_RIGHT}
 BLOX_SEG__LOWER_LEFT=${BLOX_SEG__LOWER_LEFT:-$BLOX_SEG_DEFAULT__LOWER_LEFT}
 BLOX_SEG__LOWER_RIGHT=${BLOX_SEG__LOWER_RIGHT:-$BLOX_SEG_DEFAULT__LOWER_RIGHT}
 
-# --------------------------------------------- #
-# | Helper functions
-# --------------------------------------------- #
+# ---------------------------------------------
+# Helper functions
 
 # Build a given segment
 function blox_helper__build_segment() {
@@ -99,28 +93,20 @@ function blox_helper__calculate_spaces() {
     spacing="${spacing} "
   done
 
-  # Echo'em
   echo $spacing
 }
 
-# --------------------------------------------- #
-# | Hooks
-# --------------------------------------------- #
+# ---------------------------------------------
+# Hooks
 
-# Set the title
+# Set the title to cwd
 function blox_hook__title() {
-
-  # Show working directory in the title
   tab_label=${PWD/${HOME}/\~}
   echo -ne "\e]2;${tab_label}\a"
 }
 
 # Build the prompt
 function blox_hook__build_prompt() {
-
-  # Show working directory in the title
-  tab_label=${PWD/${HOME}/\~}
-  echo -ne "\e]2;${tab_label}\a"
 
   # The prompt consists of two part: PROMPT
   # and RPROMPT. In multiline prompt, RPROMPT goes
@@ -132,10 +118,9 @@ function blox_hook__build_prompt() {
   lower_left="$(blox_helper__build_segment $BLOX_SEG__LOWER_LEFT)"
   lower_right="$(blox_helper__build_segment $BLOX_SEG__LOWER_RIGHT) "
 
-  # Spacessss
   spacing="$(blox_helper__calculate_spaces ${upper_left} ${upper_right})"
 
-  # Check if a newline char is needed
+  # Should we add a newline?
   [[ $BLOX_CONF__NEWLINE == false ]] && BLOX_CHAR__NEWLINE=""
 
   # In oneline mode, we set $PROMPT to the
@@ -167,9 +152,8 @@ ${lower_left} '
   PROMPT2=' ${BLOX_BLOCK__SYMBOL_ALTERNATE} %_ >>> '
 }
 
-# --------------------------------------------- #
-# | Setup hooks
-# --------------------------------------------- #
+# ---------------------------------------------
+# Setup hooks
 
 # Build the prompt
 add-zsh-hook precmd blox_hook__build_prompt

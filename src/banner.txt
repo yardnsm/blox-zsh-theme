@@ -3,7 +3,7 @@
 #
 # BLOX - zsh theme
 #
-# Author: Yarden Sod-Moriah <yardnsm@gmail.com> (yardnsm.net)
+# Author: Yarden Sod-Moriah <yardnsm@gmail.com>
 # License: MIT
 # Repository: https://github.com/yardnsm/blox-zsh-theme
 #

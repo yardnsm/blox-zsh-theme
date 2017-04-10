@@ -1,6 +1,5 @@
-# --------------------------------------------- #
-# | Git block options
-# --------------------------------------------- #
+# ---------------------------------------------
+# Git block options
 
 # Clean
 BLOX_BLOCK__GIT_CLEAN_COLOR="${BLOX_BLOCK__GIT_CLEAN_COLOR:-green}"
@@ -18,17 +17,16 @@ BLOX_BLOCK__GIT_UNPULLED_SYMBOL="${BLOX_BLOCK__GIT_UNPULLED_SYMBOL:-⇣}"
 BLOX_BLOCK__GIT_UNPUSHED_COLOR="${BLOX_BLOCK__GIT_UNPUSHED_COLOR:-blue}"
 BLOX_BLOCK__GIT_UNPUSHED_SYMBOL="${BLOX_BLOCK__GIT_UNPUSHED_SYMBOL:-⇡}"
 
-# --------------------------------------------- #
-# | Themes
-# --------------------------------------------- #
+# ---------------------------------------------
+# Themes
+
 BLOX_BLOCK__GIT_THEME_CLEAN="%{$fg[${BLOX_BLOCK__GIT_CLEAN_COLOR}]%}$BLOX_BLOCK__GIT_CLEAN_SYMBOL%{$reset_color%}"
 BLOX_BLOCK__GIT_THEME_DIRTY="%{$fg[${BLOX_BLOCK__GIT_DIRTY_COLOR}]%}$BLOX_BLOCK__GIT_DIRTY_SYMBOL%{$reset_color%}"
 BLOX_BLOCK__GIT_THEME_UNPULLED="%{$fg[${BLOX_BLOCK__GIT_UNPULLED_COLOR}]%}$BLOX_BLOCK__GIT_UNPULLED_SYMBOL%{$reset_color%}"
 BLOX_BLOCK__GIT_THEME_UNPUSHED="%{$fg[${BLOX_BLOCK__GIT_UNPUSHED_COLOR}]%}$BLOX_BLOCK__GIT_UNPUSHED_SYMBOL%{$reset_color%}"
 
-# --------------------------------------------- #
-# | Helper functions
-# --------------------------------------------- #
+# ---------------------------------------------
+# Helper functions
 
 # Get commit hash (short)
 function blox_block__git_helper__commit() {
@@ -46,12 +44,8 @@ function blox_block__git_helper__branch() {
 blox_block__git_helper__status() {
 
   if [[ -z "$(git status --porcelain --ignore-submodules)" ]]; then
-
-    # Clean
     echo $BLOX_BLOCK__GIT_THEME_CLEAN
   else
-
-    # Dirty
     echo $BLOX_BLOCK__GIT_THEME_DIRTY
   fi
 }
@@ -66,8 +60,6 @@ function blox_block__git_helper__remote_status() {
 
   # First check that we have a remote
   if ! [[ ${git_remote} = "" ]]; then
-
-    # Now do all that shit
     if [[ ${git_local} = ${git_remote} ]]; then
       echo ""
     elif [[ ${git_local} = ${git_base} ]]; then
@@ -85,9 +77,9 @@ function blox_block__git_helper__is_git_repo() {
   return $(git rev-parse --git-dir > /dev/null 2>&1)
 }
 
-# --------------------------------------------- #
-# | The block itself
-# --------------------------------------------- #
+# ---------------------------------------------
+# The block itself
+
 function blox_block__git() {
 
   if blox_block__git_helper__is_git_repo; then
@@ -97,6 +89,6 @@ function blox_block__git() {
     local commit="%{$fg[magenta]%}[$(blox_block__git_helper__commit)]%{$reset_color%}"
     local b_status="$(blox_block__git_helper__status)"
 
-	  echo "${branch}${commit} ${b_status}${remote}"
+    echo "${branch}${commit} ${b_status}${remote}"
   fi
 }
