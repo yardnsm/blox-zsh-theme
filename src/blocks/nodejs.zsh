@@ -14,7 +14,7 @@ function blox_block__nodejs() {
   res=""
 
   if [[ ! -z "${node_version}" ]]; then
-    res+="%{$fg[${BLOX_BLOCK__NODEJS_COLOR}]%}"
+    res+="%F{${BLOX_BLOCK__NODEJS_COLOR}}"
     res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__NODEJS_SYMBOL} ${node_version:1}${BLOX_CONF__BLOCK_SUFFIX}"
     res+="%{$reset_color%}"
   fi

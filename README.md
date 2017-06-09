@@ -5,6 +5,8 @@
 ![](./.github/terminal.png)
 Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks, and you can play with the order and change everything; it comes with some pre-defined blocks, but you can create your own or even modify them.
 
+You can consider Blox as a "framework", since you can do whatever you want with it.
+
 ---
 
 ## Install
@@ -21,15 +23,11 @@ antigen bundle yardnsm/blox-zsh-theme
 
 ### For zgen users
 
-Similarly to antigen, just add the following to your `~/.zshrc`:
-
 ```console
 zgen load yardnsm/blox-zsh-theme
 ```
 
 ### For antibody users
-
-Again, just add the following to your `~/.zshrc`:
 
 ```console
 antibody bundle yardnsm/blox-zsh-theme
@@ -46,7 +44,7 @@ antibody bundle yardnsm/blox-zsh-theme
   - Clone this repo
   - ... or add it as a submodule.
   - Just download `blox.zsh`.
-2. `source` it. Simply put the following in your `~/.zshrc`:
+2. `source` it in your `~/.zshrc`:
 ```console
 source PATH_FOR_BLOX.zsh
 ```
@@ -111,6 +109,8 @@ Shows git info.
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
+| `BLOX_BLOCK__GIT_BRANCH_COLOR` | `'242' (grey)` | Branch color |
+| `BLOX_BLOCK__GIT_COMMIT_COLOR` | `'magenta'` | Commit hash color |
 | `BLOX_BLOCK__GIT_CLEAN_COLOR` | `'green'` | Clean color |
 | `BLOX_BLOCK__GIT_CLEAN_SYMBOL` | `'✔︎'` | Clean symbol |
 | `BLOX_BLOCK__GIT_DIRTY_COLOR` | `'red'` | Dirty color |
@@ -170,7 +170,7 @@ function blox_block__helloworld() {
 }
 ```
 
-:warning: **Note:** there may be some spacing issues in the upper segments when using multiline mode. To solve this, try wrapping variables (e.g. `$fg[...]`) within a [percent-braces construct](http://unix.stackexchange.com/a/90876) (`%{…%}`);
+:warning: **Note:** there may be some spacing issues in the upper segments when using multiline mode. To solve this, try wrapping variables (especially color variables, e.g. `$fg[...]`) within `%{…%}` (see [this link](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Visual-effects) for more details).
 
 ### Setting the structure
 

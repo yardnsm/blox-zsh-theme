@@ -21,7 +21,7 @@ function blox_block__bgjobs() {
   res=""
 
   if [[ ! $bgjobs == "0" ]]; then
-    res+="%{$fg[${BLOX_BLOCK__BGJOBS_COLOR}]%}"
+    res+="%F{${BLOX_BLOCK__BGJOBS_COLOR}}"
     res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__BGJOBS_SYMBOL}${bgjobs}${BLOX_CONF__BLOCK_SUFFIX}";
     res+="%{$reset_color%}"
   fi
@@ -37,7 +37,7 @@ BLOX_BLOCK__CWD_TRUNC="${BLOX_BLOCK__CWD_TRUNC:-3}"
 # ---------------------------------------------
 
 function blox_block__cwd() {
-  res="%{$fg_bold[${BLOX_BLOCK__CWD_COLOR}]%}"
+  res="%F{${BLOX_BLOCK__CWD_COLOR}}"
   res+="%${BLOX_BLOCK__CWD_TRUNC}~";
   res+="%{$reset_color%}"
 
@@ -46,9 +46,13 @@ function blox_block__cwd() {
 # ---------------------------------------------
 # Git block options
 
+# Colors
+BLOX_BLOCK__GIT_BRANCH_COLOR="${BLOX_BLOCK__GIT_BRANCH_COLOR:-242}"
+BLOX_BLOCK__GIT_COMMIT_COLOR="${BLOX_BLOCK__GIT_COMMIT_COLOR:-magenta}"
+
 # Clean
 BLOX_BLOCK__GIT_CLEAN_COLOR="${BLOX_BLOCK__GIT_CLEAN_COLOR:-green}"
-BLOX_BLOCK__GIT_CLEAN_SYMBOL="${BLOX_BLOCK__GIT_CLEAN_SYMBOL:-✔︎%{ %}}"
+BLOX_BLOCK__GIT_CLEAN_SYMBOL="${BLOX_BLOCK__GIT_CLEAN_SYMBOL:-✔}"
 
 # Dirty
 BLOX_BLOCK__GIT_DIRTY_COLOR="${BLOX_BLOCK__GIT_DIRTY_COLOR:-red}"
@@ -65,10 +69,10 @@ BLOX_BLOCK__GIT_UNPUSHED_SYMBOL="${BLOX_BLOCK__GIT_UNPUSHED_SYMBOL:-⇡}"
 # ---------------------------------------------
 # Themes
 
-BLOX_BLOCK__GIT_THEME_CLEAN="%{$fg[${BLOX_BLOCK__GIT_CLEAN_COLOR}]%}$BLOX_BLOCK__GIT_CLEAN_SYMBOL%{$reset_color%}"
-BLOX_BLOCK__GIT_THEME_DIRTY="%{$fg[${BLOX_BLOCK__GIT_DIRTY_COLOR}]%}$BLOX_BLOCK__GIT_DIRTY_SYMBOL%{$reset_color%}"
-BLOX_BLOCK__GIT_THEME_UNPULLED="%{$fg[${BLOX_BLOCK__GIT_UNPULLED_COLOR}]%}$BLOX_BLOCK__GIT_UNPULLED_SYMBOL%{$reset_color%}"
-BLOX_BLOCK__GIT_THEME_UNPUSHED="%{$fg[${BLOX_BLOCK__GIT_UNPUSHED_COLOR}]%}$BLOX_BLOCK__GIT_UNPUSHED_SYMBOL%{$reset_color%}"
+BLOX_BLOCK__GIT_THEME_CLEAN="%F{${BLOX_BLOCK__GIT_CLEAN_COLOR}]%}$BLOX_BLOCK__GIT_CLEAN_SYMBOL%{$reset_color%}"
+BLOX_BLOCK__GIT_THEME_DIRTY="%F{${BLOX_BLOCK__GIT_DIRTY_COLOR}]%}$BLOX_BLOCK__GIT_DIRTY_SYMBOL%{$reset_color%}"
+BLOX_BLOCK__GIT_THEME_UNPULLED="%F{${BLOX_BLOCK__GIT_UNPULLED_COLOR}]%}$BLOX_BLOCK__GIT_UNPULLED_SYMBOL%{$reset_color%}"
+BLOX_BLOCK__GIT_THEME_UNPUSHED="%F{${BLOX_BLOCK__GIT_UNPUSHED_COLOR}]%}$BLOX_BLOCK__GIT_UNPUSHED_SYMBOL%{$reset_color%}"
 
 # ---------------------------------------------
 # Helper functions
@@ -78,7 +82,7 @@ function blox_block__git_helper__commit() {
   echo $(command git rev-parse --short HEAD  2> /dev/null)
 }
 
-# Get the current branch
+# Get the current branch name
 function blox_block__git_helper__branch() {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
@@ -129,12 +133,19 @@ function blox_block__git() {
 
   if blox_block__git_helper__is_git_repo; then
 
-    local branch="%F{242}$(blox_block__git_helper__branch)%{$reset_color%}"
-    local remote="$(blox_block__git_helper__remote_status)"
-    local commit="%{$fg[magenta]%}[$(blox_block__git_helper__commit)]%{$reset_color%}"
+    local branch="$(blox_block__git_helper__branch)"
+    local commit="$(blox_block__git_helper__commit)"
     local b_status="$(blox_block__git_helper__status)"
+    local remote="$(blox_block__git_helper__remote_status)"
 
-    echo "${branch}${commit} ${b_status}${remote}"
+    res=""
+
+    res+="%F{${BLOX_BLOCK__GIT_BRANCH_COLOR}}${branch}%{$reset_color%}"
+    res+="%F{${BLOX_BLOCK__GIT_COMMIT_COLOR}}${BLOX_CONF__BLOCK_PREFIX}${commit}${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%} "
+    res+="${b_status}"
+    res+="${remote}"
+
+    echo $res
   fi
 }
 # ---------------------------------------------
@@ -160,13 +171,13 @@ function blox_block__host() {
 
   # Check if the user info is needed
   if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS == true ]] || [[ $(who am i | awk '{print $1}') != $USER ]]; then
-    info+="%{$fg[$USER_COLOR]%}%n%{$reset_color%}"
+    info+="%F{$USER_COLOR]%}%n%{$reset_color%}"
   fi
 
   # Check if the machine name is needed
   if [[ $BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS == true ]] || [[ -n $SSH_CONNECTION ]]; then
     [[ $info != "" ]] && info+="@"
-    info+="%{$fg[${BLOX_BLOCK__HOST_MACHINE_COLOR}]%}%m%{$reset_color%}"
+    info+="%F{${BLOX_BLOCK__HOST_MACHINE_COLOR}]%}%m%{$reset_color%}"
   fi
 
   if [[ $info != "" ]]; then
@@ -189,7 +200,7 @@ function blox_block__nodejs() {
   res=""
 
   if [[ ! -z "${node_version}" ]]; then
-    res+="%{$fg[${BLOX_BLOCK__NODEJS_COLOR}]%}"
+    res+="%F{${BLOX_BLOCK__NODEJS_COLOR}}"
     res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__NODEJS_SYMBOL} ${node_version:1}${BLOX_CONF__BLOCK_SUFFIX}"
     res+="%{$reset_color%}"
   fi
@@ -211,8 +222,8 @@ BLOX_BLOCK__SYMBOL_ALTERNATE="${BLOX_BLOCK__SYMBOL_ALTERNATE:-◇}"
 # ---------------------------------------------
 
 function blox_block__symbol() {
-  res="%{$fg[${BLOX_BLOCK__SYMBOL_COLOR}]%}"
-  res+="%(?.$BLOX_BLOCK__SYMBOL_SYMBOL.%{$fg[$BLOX_BLOCK__SYMBOL_EXIT_COLOR]%}$BLOX_BLOCK__SYMBOL_EXIT_SYMBOL)";
+  res="%F{${BLOX_BLOCK__SYMBOL_COLOR}}"
+  res+="%(?.$BLOX_BLOCK__SYMBOL_SYMBOL.%F{$BLOX_BLOCK__SYMBOL_EXIT_COLOR}$BLOX_BLOCK__SYMBOL_EXIT_SYMBOL)";
   res+="%{$reset_color%}"
   echo $res
 }
@@ -225,17 +236,8 @@ function blox_block__time() {
 # ---------------------------------------------
 # Initialize stuff
 
-# Enable command substitution in prompt
-setopt prompt_subst
-
 # Initialize prompt
 autoload -Uz promptinit && promptinit
-
-# Initialize colors
-autoload -Uz colors && colors
-
-# Hooks
-autoload -U add-zsh-hook
 
 # ---------------------------------------------
 
@@ -256,7 +258,7 @@ BLOX_CHAR__NEWLINE="
 BLOX_SEG_DEFAULT__UPPER_LEFT=(blox_block__host blox_block__cwd blox_block__git)
 BLOX_SEG_DEFAULT__UPPER_RIGHT=(blox_block__bgjobs blox_block__nodejs blox_block__time)
 BLOX_SEG_DEFAULT__LOWER_LEFT=(blox_block__symbol)
-BLOX_SEG_DEFAULT__LOWER_RIGHT=()
+BLOX_SEG_DEFAULT__LOWER_RIGHT=( )
 
 # Upper
 BLOX_SEG__UPPER_LEFT=${BLOX_SEG__UPPER_LEFT:-$BLOX_SEG_DEFAULT__UPPER_LEFT}
@@ -307,6 +309,9 @@ function blox_helper__calculate_spaces() {
   left=${#${(S%%)left//$~zero/}}
   right=${#${(S%%)right//$~zero/}}
 
+  # We don't need spaces if there nothing on the right
+  [[ $right -le 1 ]] && echo && return 0
+
   # Desired spaces length
   local termwidth
   (( termwidth = ${COLUMNS} - ${left} - ${right} ))
@@ -345,7 +350,7 @@ function blox_hook__build_prompt() {
   spacing="$(blox_helper__calculate_spaces ${upper_left} ${upper_right})"
 
   # Should we add a newline?
-  [[ $BLOX_CONF__NEWLINE == false ]] && BLOX_CHAR__NEWLINE=""
+  [[ $BLOX_CONF__NEWLINE != false ]] && print ""
 
   # In oneline mode, we set $PROMPT to the
   # upper left segment and $RPROMPT to the upper
@@ -358,14 +363,14 @@ function blox_hook__build_prompt() {
   if [[ $BLOX_CONF__ONELINE == true ]]; then
 
     # Setting only the upper segments
-    PROMPT='${BLOX_CHAR__NEWLINE}${upper_left} '
+    PROMPT='${upper_left} '
 
     # Right segment
     RPROMPT='${upper_right}'
   else
 
     # The prompt
-    PROMPT='${BLOX_CHAR__NEWLINE}${upper_left}${spacing}${upper_right}
+    PROMPT='%{${upper_left}%}${spacing}%{${upper_right}%}
 ${lower_left} '
 
     # Right prompt
@@ -377,10 +382,43 @@ ${lower_left} '
 }
 
 # ---------------------------------------------
-# Setup hooks
+# Setup
 
-# Build the prompt
-add-zsh-hook precmd blox_hook__build_prompt
+prompt_blox_help() {
+  cat <<'EOF'
+Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks,
+and you can play with the order and change everything; it comes with some
+pre-defined blocks, but you can create your own or even modify them.
 
-# Set title
-add-zsh-hook precmd blox_hook__title
+You can consider Blox as a "framework", since you can do whatever you want with it.
+
+Configuration:
+
+See: https://github.com/yardnsm/blox-zsh-theme
+
+You can invoke it thus:
+
+  prompt blox
+
+EOF
+}
+
+prompt_blox_setup() {
+  setopt prompt_subst
+
+  autoload -Uz colors && colors
+  autoload -U add-zsh-hook
+  autoload -Uz vcs_info
+
+  add-zsh-hook precmd blox_hook__build_prompt
+  add-zsh-hook precmd blox_hook__title
+
+  return 0
+}
+
+prompt_blox_preview () {
+  local +h PS1='%# '
+  prompt_preview_theme blox "$@"
+}
+
+prompt_blox_setup "$@"

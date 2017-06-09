@@ -21,13 +21,13 @@ function blox_block__host() {
 
   # Check if the user info is needed
   if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS == true ]] || [[ $(who am i | awk '{print $1}') != $USER ]]; then
-    info+="%{$fg[$USER_COLOR]%}%n%{$reset_color%}"
+    info+="%F{$USER_COLOR]%}%n%{$reset_color%}"
   fi
 
   # Check if the machine name is needed
   if [[ $BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS == true ]] || [[ -n $SSH_CONNECTION ]]; then
     [[ $info != "" ]] && info+="@"
-    info+="%{$fg[${BLOX_BLOCK__HOST_MACHINE_COLOR}]%}%m%{$reset_color%}"
+    info+="%F{${BLOX_BLOCK__HOST_MACHINE_COLOR}]%}%m%{$reset_color%}"
   fi
 
   if [[ $info != "" ]]; then

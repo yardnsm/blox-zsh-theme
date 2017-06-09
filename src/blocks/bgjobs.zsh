@@ -11,7 +11,7 @@ function blox_block__bgjobs() {
   res=""
 
   if [[ ! $bgjobs == "0" ]]; then
-    res+="%{$fg[${BLOX_BLOCK__BGJOBS_COLOR}]%}"
+    res+="%F{${BLOX_BLOCK__BGJOBS_COLOR}}"
     res+="${BLOX_CONF__BLOCK_PREFIX}${BLOX_BLOCK__BGJOBS_SYMBOL}${bgjobs}${BLOX_CONF__BLOCK_SUFFIX}";
     res+="%{$reset_color%}"
   fi
