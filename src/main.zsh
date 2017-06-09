@@ -181,9 +181,4 @@ prompt_blox_setup() {
   return 0
 }
 
-prompt_blox_preview () {
-  local +h PS1='%# '
-  prompt_preview_theme blox "$@"
-}
-
 prompt_blox_setup "$@"
