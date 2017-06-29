@@ -20,7 +20,7 @@ function blox_block__host() {
   info=""
 
   # Check if the user info is needed
-  if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS == true ]] || [[ $(who am i | awk '{print $1}') != $USER ]]; then
+  if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS == true ]] || [[ $(whoami | awk '{print $1}') != $USER ]]; then
     info+="%F{$USER_COLOR]%}%n%{$reset_color%}"
   fi
 
