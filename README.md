@@ -5,8 +5,6 @@
 ![](./.github/terminal.png)
 Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks, and you can play with the order and change everything; it comes with some pre-defined blocks, but you can create your own or even modify them.
 
-You can consider Blox as a "framework", since you can do whatever you want with it.
-
 ---
 
 ## Install
