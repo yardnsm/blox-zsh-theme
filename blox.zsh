@@ -370,8 +370,9 @@ function blox_hook__build_prompt() {
   else
 
     # The prompt
-    PROMPT='%{${upper_left}%}${spacing}%{${upper_right}%}
-${lower_left} '
+    # https://superuser.com/questions/382503/how-can-i-put-a-newline-in-my-zsh-prompt-without-causing-terminal-redraw-issues
+    print -rP '%{${upper_left}%}${spacing}%{${upper_right}%}'
+    PROMPT='${lower_left} '
 
     # Right prompt
     RPROMPT='${lower_right}'
@@ -389,8 +390,6 @@ prompt_blox_help() {
 Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks,
 and you can play with the order and change everything; it comes with some
 pre-defined blocks, but you can create your own or even modify them.
-
-You can consider Blox as a "framework", since you can do whatever you want with it.
 
 Configuration:
 
