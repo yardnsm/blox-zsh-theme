@@ -140,7 +140,7 @@ function blox_hook__build_prompt() {
     PROMPT='${lower_left} '
 
     # Right prompt
-    RPROMPT='${lower_right}'
+    [[ "$lower_right" -gt 1 ]] && RPROMPT='${lower_right}'
   fi
 
   # PROMPT2 (continuation interactive prompt)
