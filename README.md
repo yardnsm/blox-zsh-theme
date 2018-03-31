@@ -163,10 +163,10 @@ representing the block's name.
 
 | Variable | Default |
 | :------- | :------ |
-| `BLOX_SEG__UPPER_LEFT` | `(host cwd git)` |
-| `BLOX_SEG__UPPER_RIGHT` | `(bgjobs nodejs time)` |
-| `BLOX_SEG__LOWER_LEFT` | `(symbol)` |
-| `BLOX_SEG__LOWER_RIGHT` | `()` |
+| `BLOX_SEG__UPPER_LEFT` | `( host cwd git )` |
+| `BLOX_SEG__UPPER_RIGHT` | `( bgjobs nodejs time )` |
+| `BLOX_SEG__LOWER_LEFT` | `( symbol )` |
+| `BLOX_SEG__LOWER_RIGHT` | `( )` |
 
 ### Creating blocks
 
@@ -187,7 +187,7 @@ And add the block to the prompt:
 BLOX_SEG__LOWER_RIGHT+=( helloworld )
 ```
 
-Now you have an "hello world" block in the lower right segment of your prompt! So useful.
+Now you have a "hello world" block in the lower right segment of your prompt! So useful.
 
 :warning: **Note:** there may be some spacing issues in the upper segments when using multiline mode.
 To solve this, try wrapping variables (especially color variables, e.g. `$fg[...]`) within `%{…%}`
