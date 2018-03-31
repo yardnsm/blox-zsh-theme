@@ -14,14 +14,16 @@ BLOX_BLOCK__HOST_MACHINE_COLOR="${BLOX_BLOCK__HOST_MACHINE_COLOR:-cyan}"
 # The block itself
 
 function blox_block__host() {
-  USER_COLOR=$BLOX_BLOCK__HOST_USER_COLOR
-  [[ $USER == "root" ]] && USER_COLOR=$BLOX_BLOCK__HOST_USER_ROOT_COLOR
+  local user_color=$BLOX_BLOCK__HOST_USER_COLOR
 
-  info=""
+  [[ $USER == "root" ]] \
+    && user_color=$BLOX_BLOCK__HOST_USER_ROOT_COLOR
+
+  local info=""
 
   # Check if the user info is needed
   if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS == true ]] || [[ $(whoami | awk '{print $1}') != $USER ]]; then
-    info+="%F{$USER_COLOR]%}%n%{$reset_color%}"
+    info+="%F{$user_color]%}%n%{$reset_color%}"
   fi
 
   # Check if the machine name is needed

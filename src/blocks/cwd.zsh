@@ -7,9 +7,11 @@ BLOX_BLOCK__CWD_TRUNC="${BLOX_BLOCK__CWD_TRUNC:-3}"
 # ---------------------------------------------
 
 function blox_block__cwd() {
-  res="%F{${BLOX_BLOCK__CWD_COLOR}}"
-  res+="%${BLOX_BLOCK__CWD_TRUNC}~";
-  res+="%{$reset_color%}"
+  local result=""
 
-  echo $res
+  result="%F{${BLOX_BLOCK__CWD_COLOR}}"
+  result+="%${BLOX_BLOCK__CWD_TRUNC}~";
+  result+="%{$reset_color%}"
+
+  echo $result
 }
