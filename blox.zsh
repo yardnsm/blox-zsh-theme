@@ -46,8 +46,6 @@ Blox is a minimal and fast ZSH theme that shows you what you need. It consists o
 can play with the order and change everything; it comes with some pre-defined blocks, but you can
 create your own or even modify them.
 
-Configuration:
-
 See: https://github.com/yardnsm/blox-zsh-theme
 
 You can invoke it thus:
