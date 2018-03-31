@@ -45,7 +45,7 @@ function blox_block__git_helper__branch() {
 }
 
 # Echo the appropriate symbol for branch's status
-blox_block__git_helper__status() {
+function blox_block__git_helper__status() {
 
   if [[ -z "$(git status --porcelain --ignore-submodules)" ]]; then
     echo $BLOX_BLOCK__GIT_THEME_CLEAN
@@ -84,7 +84,7 @@ function blox_block__git_helper__is_git_repo() {
 # ---------------------------------------------
 # The block itself
 
-function blox_block__git() {
+function blox_block__git_render() {
 
   if blox_block__git_helper__is_git_repo; then
 
@@ -93,7 +93,7 @@ function blox_block__git() {
     local b_status="$(blox_block__git_helper__status)"
     local remote="$(blox_block__git_helper__remote_status)"
 
-    res=""
+    local res=""
 
     res+="%F{${BLOX_BLOCK__GIT_BRANCH_COLOR}}${branch}%{$reset_color%}"
     res+="%F{${BLOX_BLOCK__GIT_COMMIT_COLOR}}${BLOX_CONF__BLOCK_PREFIX}${commit}${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%} "
