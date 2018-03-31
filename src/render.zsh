@@ -22,7 +22,7 @@ function blox_helper__calculate_spaces() {
 
   # Calculate spaces
   local spacing=""
-  for i in {1..$termwidth}; do
+  for i in {3..$termwidth}; do
     spacing="${spacing} "
   done
 
@@ -34,7 +34,6 @@ function blox_helper__calculate_spaces() {
 
 # Render the prompt
 function blox_hook__render() {
-
   local upper_left
   local upper_right
   local lower_left
@@ -42,16 +41,16 @@ function blox_hook__render() {
 
   local spacing
 
-  # Should we add a newline?
-  [[ $BLOX_CONF__NEWLINE != false ]] && print ""
+  [[ -n "$BLOX_CONF__PROMPT_PREFIX" ]] \
+    && echo -ne "$BLOX_CONF__PROMPT_PREFIX"
 
   # Segments
   upper_left="$(blox_helper__render_segment $BLOX_SEG__UPPER_LEFT)"
-  upper_right="$(blox_helper__render_segment $BLOX_SEG__UPPER_RIGHT) "
+  upper_right="$(blox_helper__render_segment $BLOX_SEG__UPPER_RIGHT)"
 
-  if [[ $BLOX_CONF__ONELINE == true ]]; then
+  if [[ $BLOX_CONF__ONELINE == false ]]; then
     lower_left="$(blox_helper__render_segment $BLOX_SEG__LOWER_LEFT)"
-    lower_right="$(blox_helper__render_segment $BLOX_SEG__LOWER_RIGHT) "
+    lower_right="$(blox_helper__render_segment $BLOX_SEG__LOWER_RIGHT)"
 
     spacing="$(blox_helper__calculate_spaces ${upper_left} ${upper_right})"
   fi
@@ -65,14 +64,15 @@ function blox_hook__render() {
 
   # Check if in oneline mode
   if [[ $BLOX_CONF__ONELINE == true ]]; then
-    PROMPT='${upper_left} '
-    RPROMPT='${upper_right}'
+    PROMPT=" ${upper_left} "
+    RPROMPT="${upper_right}"
   else
-    print -rP '%{${upper_left}%}${spacing}%{${upper_right}%}'
-    PROMPT='${lower_left} '
+    print -rP " %{${upper_left}%}${spacing}%{${upper_right}%} "
+    PROMPT=" ${lower_left} "
 
     # Right prompt
-    [[ "$lower_right" -gt 1 ]] && RPROMPT='${lower_right}'
+    [[ "$lower_right" -gt 1 ]] \
+      && RPROMPT='${lower_right}'
   fi
 
   # PROMPT2 (continuation interactive prompt)

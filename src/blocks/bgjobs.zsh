@@ -6,7 +6,7 @@ BLOX_BLOCK__BGJOBS_COLOR="${BLOX_BLOCK__BGJOBS_COLOR:-magenta}"
 
 # ---------------------------------------------
 
-function blox_block__bgjobs_render() {
+function blox_block__bgjobs() {
   local bgjobs=$(jobs | wc -l | awk '{print $1}' 2> /dev/null)
   local result=""
 

@@ -84,7 +84,7 @@ function blox_block__git_helper__is_git_repo() {
 # ---------------------------------------------
 # The block itself
 
-function blox_block__git_render() {
+function blox_block__git() {
 
   if blox_block__git_helper__is_git_repo; then
 

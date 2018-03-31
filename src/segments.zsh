@@ -25,10 +25,12 @@ function blox_helper__render_segment() {
   local segment=""
 
   for block in ${blocks[@]}; do
-    contents="$(blox_block__${block}_render)"
+    contents="$(blox_block__${block})"
 
     if [[ -n "$contents" ]]; then
-      [[ -n "$segment" ]] && segment+=" "
+      [[ -n "$segment" ]] \
+        && segment+="$BLOX_CONF__BLOCK_SEPARATOR"
+
       segment+="$contents"
     fi
   done

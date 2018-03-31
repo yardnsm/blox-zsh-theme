@@ -8,36 +8,34 @@
 # Repository: https://github.com/yardnsm/blox-zsh-theme
 #
 
+local -r __BLOX_ROOT=${0:A:h}
+
 # ---------------------------------------------
 # Initialize stuff
 
 autoload -Uz promptinit && promptinit
 
-source './src/blocks/bgjobs.zsh'
-source './src/blocks/cwd.zsh'
-source './src/blocks/git.zsh'
-source './src/blocks/host.zsh'
-source './src/blocks/nodejs.zsh'
-source './src/blocks/symbol.zsh'
-source './src/blocks/time.zsh'
+source "$__BLOX_ROOT/src/blocks/bgjobs.zsh"
+source "$__BLOX_ROOT/src/blocks/cwd.zsh"
+source "$__BLOX_ROOT/src/blocks/git.zsh"
+source "$__BLOX_ROOT/src/blocks/host.zsh"
+source "$__BLOX_ROOT/src/blocks/nodejs.zsh"
+source "$__BLOX_ROOT/src/blocks/symbol.zsh"
+source "$__BLOX_ROOT/src/blocks/time.zsh"
 
-source './src/title.zsh'
-source './src/blocks.zsh'
-source './src/segments.zsh'
-source './src/render.zsh'
+source "$__BLOX_ROOT/src/title.zsh"
+source "$__BLOX_ROOT/src/segments.zsh"
+source "$__BLOX_ROOT/src/render.zsh"
 
 # ---------------------------------------------
-
-BLOX_CONF__PROMPT_PREFIX="${BLOX_CONF__PROMPT_PREFIX:-"$'\n'"}"
-BLOX_CONF__PROMPT_SUFFIX="${BLOX_CONF__PROMPT_SUFFIX:-""}"
 
 BLOX_CONF__BLOCK_PREFIX="${BLOX_CONF__BLOCK_PREFIX:-[}"
 BLOX_CONF__BLOCK_SUFFIX="${BLOX_CONF__BLOCK_SUFFIX:-]}"
 
 BLOX_CONF__BLOCK_SEPARATOR="${BLOX_CONF__BLOCK_SEPARATOR:-" "}"
 
+BLOX_CONF__PROMPT_PREFIX="${BLOX_CONF__PROMPT_PREFIX:-"\n"}"
 BLOX_CONF__ONELINE="${BLOX_CONF__ONELINE:-false}"
-BLOX_CONF__NEWLINE="${BLOX_CONF__NEWLINE:-true}"
 
 # ---------------------------------------------
 # Setup

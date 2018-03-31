@@ -13,7 +13,7 @@ BLOX_BLOCK__HOST_MACHINE_COLOR="${BLOX_BLOCK__HOST_MACHINE_COLOR:-cyan}"
 # ---------------------------------------------
 # The block itself
 
-function blox_block__host_render() {
+function blox_block__host() {
   local user_color=$BLOX_BLOCK__HOST_USER_COLOR
 
   [[ $USER == "root" ]] \

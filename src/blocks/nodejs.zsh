@@ -6,7 +6,7 @@ BLOX_BLOCK__NODEJS_COLOR="${BLOX_BLOCK__NODEJS_COLOR:-green}"
 
 # ---------------------------------------------
 
-function blox_block__nodejs_render() {
+function blox_block__nodejs() {
 
   [[ ! -f "$(pwd)/package.json" ]] \
     && return
