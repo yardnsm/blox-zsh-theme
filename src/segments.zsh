@@ -35,7 +35,8 @@ function blox_helper__render_block() {
 # Build a given segment
 function blox_helper__render_segment() {
 
-  local blocks=(`echo $@`)
+  # For some reason, arrays cannot be assigned in typeset expressions in older versions of zsh.
+  local blocks; blocks=( `echo $@` )
   local segment=""
 
   for block in ${blocks[@]}; do
