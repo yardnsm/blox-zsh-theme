@@ -148,6 +148,15 @@ Shows nodejs version if there is a `package.json` file in the working directory.
 | `BLOX_BLOCK__NODEJS_SYMBOL` | `'⬢'` | The indicator to show |
 | `BLOX_BLOCK__NODEJS_COLOR` | `'green'` | The block's color |
 
+#### `vi_mode`
+
+Shows an indicator when Vi-mode is enabled.
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__VI_MODE_NORMAL` | `'NORMAL'` | Text to show when in NORMAL mode |
+| `BLOX_BLOCK__VI_MODE_COLOR` | `'yellow'` | The block's color |
+
 ---
 
 ## Further Customizing

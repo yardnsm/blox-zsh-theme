@@ -22,6 +22,7 @@ source "$__BLOX_ROOT/src/blocks/host.zsh"
 source "$__BLOX_ROOT/src/blocks/nodejs.zsh"
 source "$__BLOX_ROOT/src/blocks/symbol.zsh"
 source "$__BLOX_ROOT/src/blocks/time.zsh"
+source "$__BLOX_ROOT/src/blocks/vi_mode.zsh"
 
 source "$__BLOX_ROOT/src/title.zsh"
 source "$__BLOX_ROOT/src/segments.zsh"
