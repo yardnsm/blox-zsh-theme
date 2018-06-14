@@ -15,6 +15,8 @@ local -r __BLOX_ROOT=${0:A:h}
 
 autoload -Uz promptinit && promptinit
 
+source "$__BLOX_ROOT/src/utils.zsh"
+
 source "$__BLOX_ROOT/src/blocks/bgjobs.zsh"
 source "$__BLOX_ROOT/src/blocks/cwd.zsh"
 source "$__BLOX_ROOT/src/blocks/git.zsh"
@@ -23,7 +25,6 @@ source "$__BLOX_ROOT/src/blocks/nodejs.zsh"
 source "$__BLOX_ROOT/src/blocks/pyenv.zsh"
 source "$__BLOX_ROOT/src/blocks/symbol.zsh"
 source "$__BLOX_ROOT/src/blocks/time.zsh"
-source "$__BLOX_ROOT/src/blocks/vi_mode.zsh"
 
 source "$__BLOX_ROOT/src/title.zsh"
 source "$__BLOX_ROOT/src/segments.zsh"

@@ -1,6 +1,12 @@
 # ---------------------------------------------
 # Time block
 
+BLOX_BLOCK__TIME_COLOR="${BLOX_BLOCK__TIME_COLOR:-white}"
+
+# ---------------------------------------------
+
 function blox_block__time() {
-  echo "${BLOX_CONF__BLOCK_PREFIX}%T${BLOX_CONF__BLOCK_SUFFIX}"
+  blox_util__build_block \
+    "${BLOX_BLOCK__TIME_COLOR}" \
+    "%T"
 }

@@ -88,18 +88,19 @@ function blox_block__git() {
 
   if blox_block__git_helper__is_git_repo; then
 
-    local branch="$(blox_block__git_helper__branch)"
-    local commit="$(blox_block__git_helper__commit)"
-    local b_status="$(blox_block__git_helper__status)"
-    local remote="$(blox_block__git_helper__remote_status)"
+    local branch_name="$(blox_block__git_helper__branch)"
+    local commit_hash="$(blox_block__git_helper__commit)"
+    local branch_status="$(blox_block__git_helper__status)"
+    local remote_status="$(blox_block__git_helper__remote_status)"
 
-    local res=""
+    local result=""
 
-    res+="%F{${BLOX_BLOCK__GIT_BRANCH_COLOR}}${branch}%{$reset_color%}"
-    res+="%F{${BLOX_BLOCK__GIT_COMMIT_COLOR}}${BLOX_CONF__BLOCK_PREFIX}${commit}${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%} "
-    res+="${b_status}"
-    res+="${remote}"
+    result+="%F{${BLOX_BLOCK__GIT_BRANCH_COLOR}}${branch_name}%{$reset_color%}"
+    result+="%F{${BLOX_BLOCK__GIT_COMMIT_COLOR}}${BLOX_CONF__BLOCK_PREFIX}${commit_hash}${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%} "
 
-    echo $res
+    result+="${branch_status}"
+    result+="${remote_status}"
+
+    echo $result
   fi
 }

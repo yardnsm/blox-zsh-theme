@@ -139,6 +139,10 @@ Shows indicator if there are background jobs running.
 
 Shows the time in `HH:mm` format
 
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__TIME_COLOR` | `'white'` | The block's color |
+
 #### `nodejs`
 
 Shows nodejs version if there is a `package.json` file in the working directory.
@@ -148,18 +152,9 @@ Shows nodejs version if there is a `package.json` file in the working directory.
 | `BLOX_BLOCK__NODEJS_SYMBOL` | `'⬢'` | The indicator to show |
 | `BLOX_BLOCK__NODEJS_COLOR` | `'green'` | The block's color |
 
-#### `vi_mode`
-
-Shows an indicator when Vi-mode is enabled.
-
-| Variable | Default | Meaning |
-| :------- | :------ | :------ |
-| `BLOX_BLOCK__VI_MODE_NORMAL` | `'NORMAL'` | Text to show when in NORMAL mode |
-| `BLOX_BLOCK__VI_MODE_COLOR` | `'yellow'` | The block's color |
-
 #### `pyenv`
 
-Display the python version being used by pyenv
+Display the python version being used by pyenv.
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |

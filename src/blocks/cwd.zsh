@@ -1,5 +1,5 @@
 # ---------------------------------------------
-# CWD block
+# CWD block configurations
 
 BLOX_BLOCK__CWD_COLOR="${BLOX_BLOCK__CWD_COLOR:-blue}"
 BLOX_BLOCK__CWD_TRUNC="${BLOX_BLOCK__CWD_TRUNC:-3}"
