@@ -157,6 +157,14 @@ Shows an indicator when Vi-mode is enabled.
 | `BLOX_BLOCK__VI_MODE_NORMAL` | `'NORMAL'` | Text to show when in NORMAL mode |
 | `BLOX_BLOCK__VI_MODE_COLOR` | `'yellow'` | The block's color |
 
+#### `pyenv`
+
+Display the python version being used by pyenv
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__PYENV_COLOR` | `'green'` | The block's color |
+
 ---
 
 ## Further Customizing
