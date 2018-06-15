@@ -54,16 +54,16 @@ function blox_block__git_helper__branch() {
 # Echo the appropriate symbol for branch's status
 function blox_block__git_helper__status() {
   if [[ -z "$(git status --porcelain --ignore-submodules)" ]]; then
-    echo $BLOX_BLOCK__GIT_THEME_CLEAN
+    echo " $BLOX_BLOCK__GIT_THEME_CLEAN"
   else
-    echo $BLOX_BLOCK__GIT_THEME_DIRTY
+    echo " $BLOX_BLOCK__GIT_THEME_DIRTY"
   fi
 }
 
 # Echo the appropriate symbol if there are stashed files
 function blox_block__git_helper__stashed_status() {
   if $(command git rev-parse --verify refs/stash &> /dev/null); then
-    echo $BLOX_BLOCK__GIT_THEME_STASHED
+    echo " $BLOX_BLOCK__GIT_THEME_STASHED"
   fi
 }
 
@@ -80,11 +80,11 @@ function blox_block__git_helper__remote_status() {
     if [[ ${git_local} = ${git_remote} ]]; then
       echo ""
     elif [[ ${git_local} = ${git_base} ]]; then
-      echo "$BLOX_BLOCK__GIT_THEME_UNPULLED"
+      echo " $BLOX_BLOCK__GIT_THEME_UNPULLED"
     elif [[ ${git_remote} = ${git_base} ]]; then
-      echo "$BLOX_BLOCK__GIT_THEME_UNPUSHED"
+      echo " $BLOX_BLOCK__GIT_THEME_UNPUSHED"
     else
-      echo "$BLOX_BLOCK__GIT_THEME_UNPULLED $BLOX_BLOCK__GIT_THEME_UNPUSHED"
+      echo " $BLOX_BLOCK__GIT_THEME_UNPULLED $BLOX_BLOCK__GIT_THEME_UNPUSHED"
     fi
   fi
 }
@@ -112,9 +112,9 @@ function blox_block__git() {
     result+="%F{${BLOX_BLOCK__GIT_BRANCH_COLOR}}${branch_name}%{$reset_color%}"
     result+="%F{${BLOX_BLOCK__GIT_COMMIT_COLOR}}${BLOX_CONF__BLOCK_PREFIX}${commit_hash}${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%}"
 
-    result+=" ${branch_status}"
-    result+=" ${stashed_status}"
-    result+=" ${remote_status}"
+    result+="${branch_status}"
+    result+="${stashed_status}"
+    result+="${remote_status}"
 
     echo $result
   fi
