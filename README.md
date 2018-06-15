@@ -168,6 +168,16 @@ Display the name of the currently used virtualenv.
 | :------- | :------ | :------ |
 | `BLOX_BLOCK__VIRTUALENV_COLOR` | `'green'` | The block's color |
 
+#### `exec_time`
+
+Display the last command's execute time.
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__EXEC_TIME_MIN_ELAPSED` | `5` | The minimum number of seconds for showing the block |
+| `BLOX_BLOCK__EXEC_TIME_PERSIST` | `0` | If enabled, the timestamp won't be cleared up until next execution. Can be useful when needed to re-draw the prompt. |
+| `BLOX_BLOCK__EXEC_TIME_COLOR` | `'yellow'` | The block's color |
+
 ---
 
 ## Further Customizing
@@ -183,8 +193,8 @@ representing the block's name.
 
 | Variable | Default |
 | :------- | :------ |
-| `BLOX_SEG__UPPER_LEFT` | `( host cwd git )` |
-| `BLOX_SEG__UPPER_RIGHT` | `( bgjobs nodejs time )` |
+| `BLOX_SEG__UPPER_LEFT` | `( host cwd git exec_time )` |
+| `BLOX_SEG__UPPER_RIGHT` | `( bgjobs nodejs pyenv virtualenv time )` |
 | `BLOX_SEG__LOWER_LEFT` | `( symbol )` |
 | `BLOX_SEG__LOWER_RIGHT` | `( )` |
 

@@ -19,6 +19,7 @@ source "$__BLOX_ROOT/src/utils.zsh"
 
 source "$__BLOX_ROOT/src/blocks/bgjobs.zsh"
 source "$__BLOX_ROOT/src/blocks/cwd.zsh"
+source "$__BLOX_ROOT/src/blocks/exec_time.zsh"
 source "$__BLOX_ROOT/src/blocks/git.zsh"
 source "$__BLOX_ROOT/src/blocks/host.zsh"
 source "$__BLOX_ROOT/src/blocks/nodejs.zsh"
@@ -68,6 +69,10 @@ prompt_blox_setup() {
 
   add-zsh-hook precmd blox_hook__render
   add-zsh-hook precmd blox_hook__title
+
+  # See ./src/blocks/exec_time.zsh
+  add-zsh-hook preexec blox_block__exec_time_hook__preexec
+  add-zsh-hook precmd blox_block__exec_time_hook__precmd
 
   return 0
 }

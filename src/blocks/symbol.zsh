@@ -1,5 +1,5 @@
 # ---------------------------------------------
-# Symbol block
+# Symbol block configurations
 
 # Colors
 BLOX_BLOCK__SYMBOL_COLOR="${BLOX_BLOCK__SYMBOL_COLOR:-cyan}"
