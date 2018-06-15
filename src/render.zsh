@@ -34,6 +34,11 @@ function blox_helper__calculate_spaces() {
 
 # Render the prompt
 function blox_hook__render() {
+  # `EXTENDED_GLOB` may be required by some blocks. `LOCAL_OPTIONS` will enable
+  # the option locally, meaning it'll restore to its previous state after the
+  # function exits.
+  setopt EXTENDED_GLOB LOCAL_OPTIONS
+
   local upper_left
   local upper_right
   local lower_left

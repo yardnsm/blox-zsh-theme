@@ -9,7 +9,7 @@ BLOX_BLOCK__EXEC_TIME_START=""
 BLOX_BLOCK__EXEC_TIME_STOP=""
 
 # ---------------------------------------------
-# Helper function
+# Helper functions
 
 # Turns seconds into human readable time
 # https://github.com/sindresorhus/pure/blob/master/pure.zsh#L30
