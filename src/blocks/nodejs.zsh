@@ -14,7 +14,14 @@ function blox_block__nodejs_helper__get_version() {
 # ---------------------------------------------
 
 function blox_block__nodejs() {
-  [[ -f "$(pwd)/package.json" ]] \
+  # Support for `zsh-nvm` (https://github.com/lukechilds/zsh-nvm)
+  # When `$NVM_LAZY_LOAD` is set, getting node's version is slowing the prompt.
+  # Therefore, we're showing this block only if nvm has been loaded
+  if [[ -n "$NVM_LAZY_LOAD" ]] && $(type node | grep -q 'shell function'); then
+    return
+  fi
+
+  [[ -f "$(pwd)/package.json" || -d "$(pwd)/node_modules" || -n *.(js|jsx|ts|tsx)(#qN^/) ]] \
     || return
 
   blox_helper__exists "node" \
