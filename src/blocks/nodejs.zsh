@@ -17,13 +17,13 @@ function blox_block__nodejs() {
   [[ -f "$(pwd)/package.json" ]] \
     || return
 
-  blox_util__exists "node" \
+  blox_helper__exists "node" \
     || return
 
   local node_version=$(blox_block__nodejs_helper__get_version)
 
   if [[ ! -z "${node_version}" ]]; then
-    blox_util__build_block \
+    blox_helper__build_block \
       "${BLOX_BLOCK__NODEJS_COLOR}" \
       "${BLOX_BLOCK__NODEJS_SYMBOL} ${node_version:1}"
   fi

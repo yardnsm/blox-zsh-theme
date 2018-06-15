@@ -9,7 +9,7 @@ function blox_block__virtualenv() {
   [[ -n "$VIRTUAL_ENV" ]] \
     || return
 
-  blox_util__build_block \
+  blox_helper__build_block \
     "${BLOX_BLOCK__VIRTUALENV_COLOR}" \
     "ve:${VIRTUAL_ENV:t}"
 }
