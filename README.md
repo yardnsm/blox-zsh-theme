@@ -103,16 +103,18 @@ Shows git info.
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
-| `BLOX_BLOCK__GIT_BRANCH_COLOR` | `'242' (grey)` | Branch color |
+| `BLOX_BLOCK__GIT_BRANCH_COLOR` | `'242' (grey)` | Branch name color |
 | `BLOX_BLOCK__GIT_COMMIT_COLOR` | `'magenta'` | Commit hash color |
-| `BLOX_BLOCK__GIT_CLEAN_COLOR` | `'green'` | Clean color |
-| `BLOX_BLOCK__GIT_CLEAN_SYMBOL` | `'✔︎'` | Clean symbol |
-| `BLOX_BLOCK__GIT_DIRTY_COLOR` | `'red'` | Dirty color |
-| `BLOX_BLOCK__GIT_DIRTY_SYMBOL` | `'✘'` | Dirty symbol |
-| `BLOX_BLOCK__GIT_UNPULLED_COLOR` | `'red'` | Needs pull color |
-| `BLOX_BLOCK__GIT_UNPULLED_SYMBOL` | `'⇣'` | Needs pull symbol |
-| `BLOX_BLOCK__GIT_UNPUSHED_COLOR` | `'blue'` | Needs push color |
-| `BLOX_BLOCK__GIT_UNPUSHED_SYMBOL` | `'⇡'` | Needs push symbol |
+| `BLOX_BLOCK__GIT_CLEAN_COLOR` | `'green'` | Clean branch indicator color |
+| `BLOX_BLOCK__GIT_CLEAN_SYMBOL` | `'✔︎'` | Clean branch indicator symbol |
+| `BLOX_BLOCK__GIT_DIRTY_COLOR` | `'red'` | Dirty branch indicator color |
+| `BLOX_BLOCK__GIT_DIRTY_SYMBOL` | `'✘'` | Dirty branch indicator symbol |
+| `BLOX_BLOCK__GIT_STASHED_COLOR` | `'cyan'` | Stashed files indicator color |
+| `BLOX_BLOCK__GIT_STASHED_SYMBOL` | `'\$'` | Stashed files indicator symbol |
+| `BLOX_BLOCK__GIT_UNPULLED_COLOR` | `'red'` | Behind of remote indicator color |
+| `BLOX_BLOCK__GIT_UNPULLED_SYMBOL` | `'⇣'` | Behind of remote indicator symbol |
+| `BLOX_BLOCK__GIT_UNPUSHED_COLOR` | `'blue'` | Ahead of remote indicator color |
+| `BLOX_BLOCK__GIT_UNPUSHED_SYMBOL` | `'⇡'` | Ahead of remote indicator symbol |
 
 #### `host`
 
