@@ -160,6 +160,14 @@ Display the python version being used by pyenv.
 | :------- | :------ | :------ |
 | `BLOX_BLOCK__PYENV_COLOR` | `'green'` | The block's color |
 
+#### `virtualenv`
+
+Display the name of the currently used virtualenv.
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__VIRTUALENV_COLOR` | `'green'` | The block's color |
+
 ---
 
 ## Further Customizing
