@@ -13,7 +13,7 @@ create your own or even modify them.
 ## Install
 
 This theme was tested on all the following methods, but it should be compatible with almost every
-zsh framework / plugin manager / whatever.
+zsh framework / plugin manager.
 
 ### For antigen users
 
@@ -43,13 +43,16 @@ antibody bundle yardnsm/blox-zsh-theme
 ### Manual installation
 
 1. Get the file `blox.zsh`; Either:
-  - Clone this repo
-  - ... or add it as a submodule.
-  - Just download `blox.zsh`.
+
+    - Clone this repo
+    - ... or add it as a submodule.
+    - Just download `blox.zsh`.
+
 2. `source` it in your `~/.zshrc`:
-```console
-source PATH_FOR_BLOX.zsh
-```
+
+    ```console
+    source PATH_FOR_BLOX.zsh
+    ```
 
 ---
 
