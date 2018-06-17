@@ -63,6 +63,9 @@ EOF
 prompt_blox_setup() {
   setopt prompt_subst
 
+  zmodload zsh/datetime
+  zmodload zsh/zle
+
   autoload -Uz colors && colors
   autoload -U add-zsh-hook
   autoload -Uz vcs_info
