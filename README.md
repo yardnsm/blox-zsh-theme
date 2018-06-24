@@ -71,10 +71,10 @@ The following sections describe the built-in blocks and their customizing option
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
-| `BLOX_CONF__BLOCK_PREFIX` | `'['` | Block's prefix. Some blocks may use it. |
-| `BLOX_CONF__BLOCK_SUFFIX` | `']'` | Block's suffix. Some blocks may use it. |
-| `BLOX_CONF__BLOCK_SEPARATOR` | `' '` | Character used to separate blocks. |
-| `BLOX_CONF__PROMPT_PREFIX` | `'\n'` | The prompt's prefix. |
+| `BLOX_CONF__BLOCK_PREFIX` | `'['` | A block's prefix. Some blocks may use it. |
+| `BLOX_CONF__BLOCK_SUFFIX` | `']'` | A block's suffix. Some blocks may use it. |
+| `BLOX_CONF__BLOCK_SEPARATOR` | `' '` | The character used to separate blocks. |
+| `BLOX_CONF__PROMPT_PREFIX` | `'\n'` | The prompt's prefix (the default adds a newline between prompts). |
 | `BLOX_CONF__ONELINE` | `false` | **When setting to `true`, the lower segments will be disabled** |
 
 ### Built-in blocks
@@ -98,7 +98,7 @@ The prompt's symbol.
 | `BLOX_BLOCK__SYMBOL_EXIT_COLOR` | `'red'` | The symbol's color when last command didn't exit with `0` |
 | `BLOX_BLOCK__SYMBOL_SYMBOL` | `'❯'` | The symbol |
 | `BLOX_BLOCK__SYMBOL_EXIT_SYMBOL` | `'❯'` | The symbol when last command didn't exit with `0` |
-| `BLOX_BLOCK__SYMBOL_ALTERNATE` | `'◇'` | Alternate symbol (used as PROMPT2) |
+| `BLOX_BLOCK__SYMBOL_ALTERNATE` | `'◇'` | Alternate symbol (used as `PROMPT2`) |
 
 #### `git`
 
@@ -107,7 +107,7 @@ Shows git info.
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
 | `BLOX_BLOCK__GIT_BRANCH_COLOR` | `'242' (grey)` | Branch name color |
-| `BLOX_BLOCK__GIT_COMMIT_SHOW` | `'true'` | Show the commit hash |
+| `BLOX_BLOCK__GIT_COMMIT_SHOW` | `true` | Show the commit hash |
 | `BLOX_BLOCK__GIT_COMMIT_COLOR` | `'magenta'` | Commit hash color |
 | `BLOX_BLOCK__GIT_CLEAN_COLOR` | `'green'` | Clean branch indicator color |
 | `BLOX_BLOCK__GIT_CLEAN_SYMBOL` | `'✔︎'` | Clean branch indicator symbol |
@@ -181,7 +181,7 @@ Display the last command's execute time.
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
 | `BLOX_BLOCK__EXEC_TIME_MIN_ELAPSED` | `5` | The minimum number of seconds for showing the block |
-| `BLOX_BLOCK__EXEC_TIME_PERSIST` | `0` | If enabled, the timestamp won't be cleared up until next execution. Can be useful when needed to re-draw the prompt. |
+| `BLOX_BLOCK__EXEC_TIME_PERSIST` | `false` | If enabled, the timestamp wont be cleared up until next execution. Can be useful when needed to re-draw the prompt. |
 | `BLOX_BLOCK__EXEC_TIME_COLOR` | `'yellow'` | The block's color |
 
 ---

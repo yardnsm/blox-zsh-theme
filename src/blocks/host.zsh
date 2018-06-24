@@ -21,12 +21,12 @@ function blox_block__host() {
   local result=""
 
   # Check if the user info is needed
-  if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS == true ]] || [[ $(whoami | awk '{print $1}') != $USER ]]; then
+  if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS != false ]] || [[ $(whoami | awk '{print $1}') != $USER ]]; then
     result+="%F{$user_color]%}%n%{$reset_color%}"
   fi
 
   # Check if the machine name is needed
-  if [[ $BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS == true ]] || [[ -n $SSH_CONNECTION ]]; then
+  if [[ $BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS != false ]] || [[ -n $SSH_CONNECTION ]]; then
     [[ $result != "" ]] \
       && result+="@"
 

@@ -2,7 +2,7 @@
 # Execution time block configurations
 
 BLOX_BLOCK__EXEC_TIME_MIN_ELAPSED="${BLOX_BLOCK__EXEC_TIME_MIN_ELAPSED:-5}"
-BLOX_BLOCK__EXEC_TIME_PERSIST="${BLOX_BLOCK__EXEC_TIME_PERSIST:-0}"
+BLOX_BLOCK__EXEC_TIME_PERSIST="${BLOX_BLOCK__EXEC_TIME_PERSIST:-false}"
 BLOX_BLOCK__EXEC_TIME_COLOR="${BLOX_BLOCK__EXEC_TIME_COLOR:-yellow}"
 
 BLOX_BLOCK__EXEC_TIME_START=""
@@ -34,7 +34,7 @@ function blox_block__exec_time_hook__preexec() {
 }
 
 function blox_block__exec_time_hook__precmd() {
-  [[ $BLOX_BLOCK__EXEC_TIME_PERSIST == 0 ]] \
+  [[ $BLOX_BLOCK__EXEC_TIME_PERSIST == false ]] \
     && unset BLOX_BLOCK__EXEC_TIME_START
 }
 
