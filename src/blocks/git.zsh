@@ -3,6 +3,9 @@
 
 # Colors
 BLOX_BLOCK__GIT_BRANCH_COLOR="${BLOX_BLOCK__GIT_BRANCH_COLOR:-242}"
+
+# Commit hash
+BLOX_BLOCK__GIT_COMMIT_SHOW="${BLOX_BLOCK__GIT_COMMIT_SHOW:-true}"
 BLOX_BLOCK__GIT_COMMIT_COLOR="${BLOX_BLOCK__GIT_COMMIT_COLOR:-magenta}"
 
 # Clean
@@ -101,8 +104,9 @@ function blox_block__git() {
 
   if blox_block__git_helper__is_git_repo; then
 
+    local commit_hash
+
     local branch_name="$(blox_block__git_helper__branch)"
-    local commit_hash="$(blox_block__git_helper__commit)"
     local branch_status="$(blox_block__git_helper__status)"
     local stashed_status="$(blox_block__git_helper__stashed_status)"
     local remote_status="$(blox_block__git_helper__remote_status)"
@@ -110,7 +114,10 @@ function blox_block__git() {
     local result=""
 
     result+="%F{${BLOX_BLOCK__GIT_BRANCH_COLOR}}${branch_name}%{$reset_color%}"
-    result+="%F{${BLOX_BLOCK__GIT_COMMIT_COLOR}}${BLOX_CONF__BLOCK_PREFIX}${commit_hash}${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%}"
+
+    [[ $BLOX_BLOCK__GIT_COMMIT_SHOW != false ]] \
+      && commit_hash="$(blox_block__git_helper__commit)" \
+      && result+="%F{${BLOX_BLOCK__GIT_COMMIT_COLOR}}${BLOX_CONF__BLOCK_PREFIX}${commit_hash}${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%}"
 
     result+="${branch_status}"
     result+="${stashed_status}"
