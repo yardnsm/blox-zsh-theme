@@ -39,8 +39,11 @@ BLOX_CONF__BLOCK_SUFFIX="${BLOX_CONF__BLOCK_SUFFIX:-]}"
 
 BLOX_CONF__BLOCK_SEPARATOR="${BLOX_CONF__BLOCK_SEPARATOR:-" "}"
 
-BLOX_CONF__PROMPT_PREFIX="${BLOX_CONF__PROMPT_PREFIX:-"\n"}"
 BLOX_CONF__ONELINE="${BLOX_CONF__ONELINE:-false}"
+
+# Allow setting null/empty values (#6)
+[[ -z "${BLOX_CONF__PROMPT_PREFIX+1}" ]] \
+  && BLOX_CONF__PROMPT_PREFIX="\n"
 
 # ---------------------------------------------
 # Setup
