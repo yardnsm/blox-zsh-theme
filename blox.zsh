@@ -17,6 +17,7 @@ autoload -Uz promptinit && promptinit
 
 source "$__BLOX_ROOT/src/utils.zsh"
 
+source "$__BLOX_ROOT/src/blocks/awsprofile.zsh"
 source "$__BLOX_ROOT/src/blocks/bgjobs.zsh"
 source "$__BLOX_ROOT/src/blocks/cwd.zsh"
 source "$__BLOX_ROOT/src/blocks/exec_time.zsh"
