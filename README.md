@@ -2,7 +2,7 @@
 
 > Clean, modular ZSH theme
 
-![](./media/terminal.png)
+![](./.github/terminal.png)
 
 Blox is a minimal and fast ZSH theme that shows you what you need. It consists of blocks, and you
 can play with the order and change everything; it comes with some pre-defined blocks, but you can
@@ -58,7 +58,7 @@ antibody bundle yardnsm/blox-zsh-theme
 
 ## The prompt
 
-![](./media/terminal-sliced.png)
+![](./.github/terminal-sliced.png)
 
 The main idea of this theme is dividing the prompt into blocks. The blocks are modular and they
 could be arranged and modified. Each block has its options, which can also be customized. In
