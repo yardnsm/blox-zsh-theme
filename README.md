@@ -76,6 +76,7 @@ The following sections describe the built-in blocks and their customizing option
 | `BLOX_CONF__BLOCK_SEPARATOR` | `' '` | The character used to separate blocks. |
 | `BLOX_CONF__PROMPT_PREFIX` | `'\n'` | The prompt's prefix (the default adds a newline between prompts). |
 | `BLOX_CONF__ONELINE` | `false` | **When setting to `true`, the lower segments will be disabled** |
+| `BLOX_CONF__UNIFIED_PROMPT` | `false` | Set the to `true`, the entire rendered result will be assigned to `$PROMPT`. Otherwise, it'll render the upper segments separately (we recommend leaving it as `false` as it may solve some resizing issue, see [#2](https://github.com/yardnsm/blox-zsh-theme/issues/2)) |
 
 ### Built-in blocks
 

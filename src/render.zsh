@@ -72,10 +72,22 @@ function blox_hook__render() {
     PROMPT=" ${upper_left} "
     RPROMPT="${upper_right}"
   else
-    print -rP " %{${upper_left}%}${spacing}%{${upper_right}%} "
-    PROMPT=" ${lower_left} "
 
-    # Right prompt
+    if [[ $BLOX_CONF__UNIFIED_PROMPT == true ]]; then
+
+      # When $BLOX_CONF__UNIFIED_PROMPT set to `true`, we'll render the entire prompt (besides of
+      # the lower right segment) by assigning the result to $PROMPT (#8).
+      PROMPT=" %{${upper_left}%}${spacing}%{${upper_right}%}
+ ${lower_left} "
+    else
+
+      # Otherwise, we'll first render the upper segments separately, then the lower segments. Doing
+      # this may solve some resizing issue (#2).
+      print -rP " %{${upper_left}%}${spacing}%{${upper_right}%} "
+      PROMPT=" ${lower_left} "
+    fi
+
+    # Lower right prompt
     [[ "$lower_right" -gt 1 ]] \
       && RPROMPT='${lower_right}'
   fi
