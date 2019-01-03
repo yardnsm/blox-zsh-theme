@@ -22,7 +22,7 @@ function blox_block__host() {
 
   # Check if the user info is needed
   if [[ $BLOX_BLOCK__HOST_USER_SHOW_ALWAYS != false ]] || [[ $(whoami | awk '{print $1}') != $USER ]]; then
-    result+="%F{$user_color]%}%n%{$reset_color%}"
+    result+="%F{$user_color]%}%n%f"
   fi
 
   # Check if the machine name is needed
@@ -30,7 +30,7 @@ function blox_block__host() {
     [[ $result != "" ]] \
       && result+="@"
 
-    result+="%F{${BLOX_BLOCK__HOST_MACHINE_COLOR}]%}%m%{$reset_color%}"
+    result+="%F{${BLOX_BLOCK__HOST_MACHINE_COLOR}]%}%m%f"
   fi
 
   if [[ $result != "" ]]; then

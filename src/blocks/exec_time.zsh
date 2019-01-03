@@ -53,7 +53,7 @@ function blox_block__exec_time() {
 
   result="%F{${BLOX_BLOCK__EXEC_TIME_COLOR}}"
   result+="$(blox_block__exec_time_helper__humen_time $elapsed)";
-  result+="%{$reset_color%}"
+  result+="%f"
 
   echo $result
 }

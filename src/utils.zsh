@@ -17,7 +17,7 @@ function blox_helper__build_block() {
 
   result+="%F{${color}}"
   result+="${prefix}${contents}${suffix}";
-  result+="%{$reset_color%}"
+  result+="%f"
 
   echo -n "$result"
 }
