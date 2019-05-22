@@ -79,6 +79,14 @@ The following sections describe the built-in blocks and their customizing option
 
 ### Built-in blocks
 
+#### `awsprofile`
+
+Displays the current AWS profile (from the `$AWS_PROFILE` env variable).
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__AWSPROFILE_COLOR` | `'orange'` | This block's color |
+
 #### `cwd`
 
 Displays the current working directory.
