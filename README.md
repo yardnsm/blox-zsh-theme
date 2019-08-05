@@ -85,7 +85,7 @@ Displays the current AWS profile (from the `$AWS_PROFILE` env variable).
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
-| `BLOX_BLOCK__AWSPROFILE_COLOR` | `'orange'` | This block's color |
+| `BLOX_BLOCK__AWSPROFILE_COLOR` | `'172' (orange)` | This block's color |
 
 #### `cwd`
 
