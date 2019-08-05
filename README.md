@@ -79,14 +79,6 @@ The following sections describe the built-in blocks and their customizing option
 
 ### Built-in blocks
 
-#### `awsprofile`
-
-Displays the current AWS profile (from the `$AWS_PROFILE` env variable).
-
-| Variable | Default | Meaning |
-| :------- | :------ | :------ |
-| `BLOX_BLOCK__AWSPROFILE_COLOR` | `'172' (orange)` | This block's color |
-
 #### `cwd`
 
 Displays the current working directory.
@@ -191,6 +183,14 @@ Display the last command's execute time.
 | `BLOX_BLOCK__EXEC_TIME_MIN_ELAPSED` | `5` | The minimum number of seconds for showing the block |
 | `BLOX_BLOCK__EXEC_TIME_PERSIST` | `false` | If enabled, the timestamp wont be cleared up until next execution. Can be useful when needed to re-draw the prompt. |
 | `BLOX_BLOCK__EXEC_TIME_COLOR` | `'yellow'` | The block's color |
+
+#### `awsprofile`
+
+Displays the current AWS profile (from the `$AWS_PROFILE` env variable).
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_BLOCK__AWSPROFILE_COLOR` | `'172' (orange)` | This block's color |
 
 ---
 
