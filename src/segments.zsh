@@ -3,7 +3,7 @@
 
 # Defualts
 __BLOX_SEG_DEFAULT__UPPER_LEFT=( host cwd git exec_time )
-__BLOX_SEG_DEFAULT__UPPER_RIGHT=( bgjobs nodejs pyenv virtualenv time )
+__BLOX_SEG_DEFAULT__UPPER_RIGHT=( bgjobs nodejs pyenv virtualenv awsprofile time )
 __BLOX_SEG_DEFAULT__LOWER_LEFT=( symbol )
 __BLOX_SEG_DEFAULT__LOWER_RIGHT=( )
 

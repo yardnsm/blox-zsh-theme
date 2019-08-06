@@ -27,6 +27,7 @@ source "$__BLOX_ROOT/src/blocks/pyenv.zsh"
 source "$__BLOX_ROOT/src/blocks/symbol.zsh"
 source "$__BLOX_ROOT/src/blocks/time.zsh"
 source "$__BLOX_ROOT/src/blocks/virtualenv.zsh"
+source "$__BLOX_ROOT/src/blocks/awsprofile.zsh"
 
 source "$__BLOX_ROOT/src/title.zsh"
 source "$__BLOX_ROOT/src/segments.zsh"
