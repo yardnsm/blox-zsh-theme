@@ -16,7 +16,11 @@ local -r __BLOX_ROOT=${0:A:h}
 autoload -Uz promptinit && promptinit
 
 source "$__BLOX_ROOT/src/utils.zsh"
+source "$__BLOX_ROOT/src/hooks.zsh"
+source "$__BLOX_ROOT/src/render.zsh"
+source "$__BLOX_ROOT/src/title.zsh"
 
+source "$__BLOX_ROOT/src/blocks/awsprofile.zsh"
 source "$__BLOX_ROOT/src/blocks/bgjobs.zsh"
 source "$__BLOX_ROOT/src/blocks/cwd.zsh"
 source "$__BLOX_ROOT/src/blocks/exec_time.zsh"
@@ -27,14 +31,9 @@ source "$__BLOX_ROOT/src/blocks/pyenv.zsh"
 source "$__BLOX_ROOT/src/blocks/symbol.zsh"
 source "$__BLOX_ROOT/src/blocks/time.zsh"
 source "$__BLOX_ROOT/src/blocks/virtualenv.zsh"
-source "$__BLOX_ROOT/src/blocks/awsprofile.zsh"
-
-source "$__BLOX_ROOT/src/title.zsh"
-source "$__BLOX_ROOT/src/segments.zsh"
-source "$__BLOX_ROOT/src/render.zsh"
-source "$__BLOX_ROOT/src/hooks.zsh"
 
 # ---------------------------------------------
+# Configurations
 
 BLOX_CONF__BLOCK_PREFIX="${BLOX_CONF__BLOCK_PREFIX:-[}"
 BLOX_CONF__BLOCK_SUFFIX="${BLOX_CONF__BLOCK_SUFFIX:-]}"
@@ -47,6 +46,23 @@ BLOX_CONF__UNIFIED_PROMPT="${BLOX_CONF__UNIFIED_PROMPT:-false}"
 # Allow setting null/empty values (#6)
 [[ -z "${BLOX_CONF__PROMPT_PREFIX+1}" ]] \
   && BLOX_CONF__PROMPT_PREFIX="\n"
+
+# ---------------------------------------------
+# Segments Configuration
+
+# Defualts
+__BLOX_SEG_DEFAULT__UPPER_LEFT=( host cwd git exec_time )
+__BLOX_SEG_DEFAULT__UPPER_RIGHT=( bgjobs nodejs pyenv virtualenv awsprofile time )
+__BLOX_SEG_DEFAULT__LOWER_LEFT=( symbol )
+__BLOX_SEG_DEFAULT__LOWER_RIGHT=( )
+
+# Upper
+BLOX_SEG__UPPER_LEFT=( ${BLOX_SEG__UPPER_LEFT:-$__BLOX_SEG_DEFAULT__UPPER_LEFT} )
+BLOX_SEG__UPPER_RIGHT=( ${BLOX_SEG__UPPER_RIGHT:-$__BLOX_SEG_DEFAULT__UPPER_RIGHT} )
+
+# Lower
+BLOX_SEG__LOWER_LEFT=( ${BLOX_SEG__LOWER_LEFT:-$__BLOX_SEG_DEFAULT__LOWER_LEFT} )
+BLOX_SEG__LOWER_RIGHT=( ${BLOX_SEG__LOWER_RIGHT:-$__BLOX_SEG_DEFAULT__LOWER_RIGHT} )
 
 # ---------------------------------------------
 # Setup
