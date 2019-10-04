@@ -32,6 +32,7 @@ source "$__BLOX_ROOT/src/blocks/awsprofile.zsh"
 source "$__BLOX_ROOT/src/title.zsh"
 source "$__BLOX_ROOT/src/segments.zsh"
 source "$__BLOX_ROOT/src/render.zsh"
+source "$__BLOX_ROOT/src/hooks.zsh"
 
 # ---------------------------------------------
 
@@ -75,12 +76,12 @@ prompt_blox_setup() {
   autoload -U add-zsh-hook
   autoload -Uz vcs_info
 
+  # Setup builtin hookd
   add-zsh-hook precmd blox_hook__render
   add-zsh-hook precmd blox_hook__title
 
-  # See ./src/blocks/exec_time.zsh
-  add-zsh-hook preexec blox_block__exec_time_hook__preexec
-  add-zsh-hook precmd blox_block__exec_time_hook__precmd
+  # Setup hooks for blocks
+  blox_helper__setup_hooks
 
   return 0
 }
