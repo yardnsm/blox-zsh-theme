@@ -1,21 +1,4 @@
 # ---------------------------------------------
-# Configurations
-
-# Defualts
-__BLOX_SEG_DEFAULT__UPPER_LEFT=( host cwd git exec_time )
-__BLOX_SEG_DEFAULT__UPPER_RIGHT=( bgjobs nodejs pyenv virtualenv awsprofile time )
-__BLOX_SEG_DEFAULT__LOWER_LEFT=( symbol )
-__BLOX_SEG_DEFAULT__LOWER_RIGHT=( )
-
-# Upper
-BLOX_SEG__UPPER_LEFT=( ${BLOX_SEG__UPPER_LEFT:-$__BLOX_SEG_DEFAULT__UPPER_LEFT} )
-BLOX_SEG__UPPER_RIGHT=( ${BLOX_SEG__UPPER_RIGHT:-$__BLOX_SEG_DEFAULT__UPPER_RIGHT} )
-
-# Lower
-BLOX_SEG__LOWER_LEFT=( ${BLOX_SEG__LOWER_LEFT:-$__BLOX_SEG_DEFAULT__LOWER_LEFT} )
-BLOX_SEG__LOWER_RIGHT=( ${BLOX_SEG__LOWER_RIGHT:-$__BLOX_SEG_DEFAULT__LOWER_RIGHT} )
-
-# ---------------------------------------------
 # Helper functions
 
 # Render a block
