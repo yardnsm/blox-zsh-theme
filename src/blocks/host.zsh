@@ -27,6 +27,7 @@ function blox_block__host() {
 
   # Check if the machine name is needed
   if [[ $BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS != false ]] || [[ -n $SSH_CONNECTION ]]; then
+
     [[ $result != "" ]] \
       && result+="@"
 
