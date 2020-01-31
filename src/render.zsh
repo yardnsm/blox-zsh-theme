@@ -14,7 +14,9 @@ function blox_helper__calculate_spaces() {
   left=${#${(S%%)left//$~zero/}}
   right=${#${(S%%)right//$~zero/}}
 
-  [[ $right -le 1 ]] && echo && return 0
+  if [[ $right -le 1 ]]; then
+    return 0
+  fi
 
   # Desired spaces length
   local termwidth
@@ -88,8 +90,8 @@ function blox_hook__render() {
     fi
 
     # Lower right prompt
-    [[ "$lower_right" -gt 1 ]] \
-      && RPROMPT='${lower_right}'
+    [[ -n "$lower_right" ]] \
+      && RPROMPT="${lower_right}"
   fi
 
   # PROMPT2 (continuation interactive prompt)

@@ -1,0 +1,17 @@
+name: test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: macOS-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Installing zunit
+        run: brew install zunit-zsh/zunit/zunit
+
+      - name: Running tests
+        run: zunit run

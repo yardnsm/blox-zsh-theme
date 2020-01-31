@@ -1,0 +1,106 @@
+#!/usr/bin/env zunit
+
+@setup {
+
+  # Emulate a 30 chars-wide terminal
+  export COLUMNS=30
+
+  # Define block stubs
+  function blox_block__first()  { echo 'First'  }
+  function blox_block__second() { echo 'Second' }
+  function blox_block__third()  { echo 'Third'  }
+  function blox_block__fourth() { echo 'Fourth' }
+
+  # Define default segments. Would yield the following oneline prompt (█ is the cursor):
+  #
+  #   | First █                Second|
+  #
+  # And the following multiline prompt:
+  #
+  #   | First                  Second|
+  #   | Third █                Fourth|
+  #
+  BLOX_SEG__UPPER_LEFT=( first )
+  BLOX_SEG__UPPER_RIGHT=( second )
+  BLOX_SEG__LOWER_LEFT=( third )
+  BLOX_SEG__LOWER_RIGHT=( fourth )
+
+  # Load dependencies
+  load ../src/segments.zsh
+  load ../src/render.zsh
+}
+
+@test 'Should return nothing if only a single string is provided' {
+  run blox_helper__calculate_spaces \
+    'First'
+
+  assert "$(echo -n "$output" | wc -c)" equals 0
+}
+
+@test 'Should return the difference between the given 2 string in spaces' {
+
+  # 'First' is 5 chars
+  # 'Second' is 6 chars
+  # Padding is 2 chars
+  # 30 - 6 - 5 - 2 = 17
+  run blox_helper__calculate_spaces \
+    'First' \
+    'Second'
+
+  assert "$(echo -n "$output" | wc -c)" equals 17
+}
+
+@test 'Should strip escape characters' {
+  run blox_helper__calculate_spaces \
+    "%F{cyan}First$reset_color" \
+    '%{this part does not count%}Second%f'
+
+  assert "$(echo -n "$output" | wc -c)" equals 17
+}
+
+@test 'Should render the prompt prefix if set' {
+  BLOX_CONF__PROMPT_PREFIX="prompt_prefix"
+
+  run blox_hook__render
+
+  assert "$output" matches '^prompt_prefix'
+}
+
+@test 'Should set PROMPT as the upper_left and RPROMPT as the upper_right for oneline mode' {
+  BLOX_CONF__ONELINE=true
+
+  # We're not using zuint's `run` cuz we want to leak data
+  blox_hook__render
+
+  assert "$PROMPT" same_as ' First ' # Padded
+  assert "$RPROMPT" same_as 'Second' # Not padded
+}
+
+@test 'Should set PROMPT as the upper_left, upper_right and lower_left for unified mode' {
+  BLOX_CONF__ONELINE=false
+  BLOX_CONF__UNIFIED_PROMPT=true
+
+  blox_hook__render
+
+  assert "$PROMPT" matches '^ \%\{First\%\}( )+\%\{Second\%\}\n Third '
+  assert "$RPROMPT" same_as 'Fourth'
+}
+
+@test 'Should print upper segments separately when not in unified mode' {
+  BLOX_CONF__ONELINE=false
+  BLOX_CONF__UNIFIED_PROMPT=false
+
+  run blox_hook__render
+
+  assert "$output" matches '^ First( )+Second $'
+}
+
+@test 'Should set PROMPT to lower_left and RPROMPT to lower_right when not in unified mode' {
+  BLOX_CONF__ONELINE=false
+  BLOX_CONF__UNIFIED_PROMPT=false
+
+  blox_hook__render
+
+  assert "$PROMPT" same_as ' Third '
+  assert "$RPROMPT" same_as 'Fourth'
+}

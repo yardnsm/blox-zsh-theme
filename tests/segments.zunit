@@ -1,0 +1,48 @@
+#!/usr/bin/env zunit
+
+@setup {
+
+  # Define block stubs
+  function blox_block__first()  { echo 'First'  }
+  function blox_block__second() { echo 'Second' }
+  function blox_block__blank()  { echo '' }
+
+  # Default separator
+  BLOX_CONF__BLOCK_SEPARATOR=" "
+
+  load ../src/segments.zsh
+}
+
+@test 'Should not render when a block is not defined' {
+  output="$(blox_helper__render_block non_existing)"
+
+  assert "$output" same_as ''
+}
+
+@test 'Should render a block if exists' {
+  output="$(blox_helper__render_block first)"
+
+  assert "$output" same_as 'First'
+}
+
+@test 'Should render a block if exists using the legacy format' {
+  output="$(blox_helper__render_block blox_block__second)"
+
+  assert "$output" same_as 'Second'
+}
+
+@test 'Should render a given segment' {
+  BLOX_SEG=( first second first )
+
+  output="$(blox_helper__render_segment "$BLOX_SEG")"
+
+  assert "$output" same_as 'First Second First'
+}
+
+@test 'Should not put a separator when a block is not rendering' {
+  BLOX_SEG=( first second blank first blank )
+
+  output="$(blox_helper__render_segment "$BLOX_SEG")"
+
+  assert "$output" same_as 'First Second First'
+}

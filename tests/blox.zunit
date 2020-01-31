@@ -1,0 +1,82 @@
+#!/usr/bin/env zunit
+
+@setup {
+  load ../blox.zsh
+}
+
+@test 'Should autoload promptinit' {
+  run typeset -f promptinit
+  assert $state equals 0
+}
+
+@test 'Should setup default configuration' {
+  assert "$BLOX_CONF__BLOCK_PREFIX" same_as '['
+  assert "$BLOX_CONF__BLOCK_SUFFIX" same_as ']'
+
+  assert "$BLOX_CONF__BLOCK_SEPARATOR" same_as ' '
+  assert "$BLOX_CONF__ONELINE" same_as 'false'
+  assert "$BLOX_CONF__UNIFIED_PROMPT" same_as 'false'
+
+  assert "$BLOX_CONF__PROMPT_PREFIX" matches '\\n'
+
+  assert "$BLOX_SEG__UPPER_LEFT" same_as 'host cwd git exec_time'
+  assert "$BLOX_SEG__UPPER_RIGHT" same_as 'bgjobs nodejs pyenv virtualenv awsprofile time'
+  assert "$BLOX_SEG__LOWER_LEFT" same_as 'symbol'
+  assert "$BLOX_SEG__LOWER_RIGHT" same_as ''
+}
+
+@test 'Should use defined values for configuration' {
+  BLOX_CONF__BLOCK_PREFIX='prefix'
+  BLOX_CONF__BLOCK_SUFFIX='suffix'
+  BLOX_CONF__BLOCK_SEPARATOR='separator'
+  BLOX_CONF__ONELINE='true'
+  BLOX_CONF__UNIFIED_PROMPT='true'
+  BLOX_CONF__PROMPT_PREFIX='prompt_prefix'
+
+  BLOX_SEG__UPPER_LEFT=( first )
+  BLOX_SEG__UPPER_RIGHT=( second )
+  BLOX_SEG__LOWER_LEFT=( third )
+  BLOX_SEG__LOWER_RIGHT=( fourth )
+
+  # Reload blox
+  load ../blox.zsh
+
+  assert "$BLOX_CONF__BLOCK_PREFIX" same_as 'prefix'
+  assert "$BLOX_CONF__BLOCK_SUFFIX" same_as 'suffix'
+
+  assert "$BLOX_CONF__BLOCK_SEPARATOR" same_as 'separator'
+  assert "$BLOX_CONF__ONELINE" same_as 'true'
+  assert "$BLOX_CONF__UNIFIED_PROMPT" same_as 'true'
+
+  assert "$BLOX_CONF__PROMPT_PREFIX" matches 'prompt_prefix'
+
+
+  assert "$BLOX_SEG__UPPER_LEFT" same_as 'first'
+  assert "$BLOX_SEG__UPPER_RIGHT" same_as 'second'
+  assert "$BLOX_SEG__LOWER_LEFT" same_as 'third'
+  assert "$BLOX_SEG__LOWER_RIGHT" same_as 'fourth'
+}
+
+@test 'Should allow null values for BLOX_CONF__PROMPT_PREFIX' {
+  BLOX_CONF__PROMPT_PREFIX=""
+
+  # Reload blox
+  load ../blox.zsh
+
+  assert "$BLOX_CONF__PROMPT_PREFIX" same_as ''
+}
+
+@test 'Should expose main functions' {
+  run typeset -f prompt_blox_help
+  assert $state equals 0
+
+  run typeset -f prompt_blox_setup
+  assert $state equals 0
+}
+
+@test 'Should setup core hooks' {
+  run add-zsh-hook -L precmd
+
+  assert $output contains 'blox_hook__render'
+  assert $output contains 'blox_hook__title'
+}
