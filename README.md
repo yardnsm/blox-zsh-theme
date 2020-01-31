@@ -1,5 +1,7 @@
 # Blox
 
+[![Build Status](https://github.com/yardnsm/blox-zsh-theme/workflows/test/badge.svg)](https://github.com/yardnsm/blox-zsh-theme/actions)
+
 > Clean, modular ZSH theme
 
 ![](./.github/terminal.png)
