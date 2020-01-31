@@ -1,0 +1,36 @@
+#!/usr/bin/env zunit
+
+@setup {
+
+  # Default block prefixes
+  BLOX_CONF__BLOCK_PREFIX='['
+  BLOX_CONF__BLOCK_SUFFIX=']'
+
+  load ../src/utils.zsh
+}
+
+@test 'Should pass if command exists' {
+  function some_function() {}
+
+  if blox_helper__exists "some_function"; then
+    pass
+  fi
+}
+
+@test 'Should fail if command does not exists' {
+  if ! blox_helper__exists "some_undefined_function"; then
+    pass
+  fi
+}
+
+@test 'Should build a block given color and contents' {
+  output="$(blox_helper__build_block "green" "text")"
+
+  assert "$output" same_as "%F{green}[text]%f"
+}
+
+@test 'Should build a block given color, contents and block affixes' {
+  output="$(blox_helper__build_block "green" "text" "<" ">")"
+
+  assert "$output" same_as "%F{green}<text>%f"
+}
