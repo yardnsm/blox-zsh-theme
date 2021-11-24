@@ -20,7 +20,7 @@ function blox_helper__calculate_spaces() {
 
   # Desired spaces length
   local termwidth
-  (( termwidth = ${COLUMNS} - ${left} - ${right} ))
+  (( termwidth = ${COLUMNS} - ${left} - ${right} - ${BLOX_CONF__ADJUST_SEGMENT_SPACING:-0}))
 
   # Calculate spaces
   local spacing=""
