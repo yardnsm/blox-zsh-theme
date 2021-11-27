@@ -239,7 +239,12 @@ Now you have a "hello world" block in the lower right segment of your prompt! So
 :warning: **Note:** there may be some spacing issues in the upper segments when using multiline mode.
 To solve this, try wrapping variables (especially color variables, e.g. `$fg[...]`) within `%{…%}`
 (see [this link](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Visual-effects) for
-more details).
+more details).  If the error is consistent, you can adjust the spacing:
+
+| Variable | Default | Meaning |
+| :------- | :------ | :------ |
+| `BLOX_SEG__ADJUST_SPACING_WIDTH` | `0` | Will be added to the calculated spacing length 
+
 
 ---
 
