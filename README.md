@@ -243,7 +243,7 @@ more details).  If the error is consistent, you can adjust the spacing:
 
 | Variable | Default | Meaning |
 | :------- | :------ | :------ |
-| `BLOX_SEG__ADJUST_SPACING_WIDTH` | `0` | Will be added to the calculated spacing length 
+| `BLOX_SEG__ADJUST_SPACING_WIDTH` | `0` | Will be subtracted from the calculated spacing length 
 
 
 ---
