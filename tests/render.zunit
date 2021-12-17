@@ -50,6 +50,20 @@
   assert "$(echo -n "$output" | wc -c)" equals 17
 }
 
+@test 'Should return the adjusted difference between the given 2 string in spaces' {
+  BLOX_SEG__ADJUST_SPACING_WIDTH=2
+  # 'First' is 5 chars
+  # 'Second' is 6 chars
+  # Padding is 2 chars
+  # Adjustment is 2 chars
+  # 30 - 6 - 5 - 2 - 2 = 15
+  run blox_helper__calculate_spaces \
+    'First' \
+    'Second'
+
+  assert "$(echo -n "$output" | wc -c)" equals 15
+}
+
 @test 'Should strip escape characters' {
   run blox_helper__calculate_spaces \
     "%F{cyan}First$reset_color" \
